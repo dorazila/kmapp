@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Analisi prezzi</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<div th:replace="~{_nav :: nav}"></div>
+<main class="container">
+  <div class="card">
+    <h1>Analisi prezzi<span th:if="${savedAnalisi != null}">: <em th:text="${savedAnalisi.titolo}" style="font-style:normal;color:var(--green)"></em></span></h1>
+    <p class="total">Totale voce <span th:text="${selectedVoce}"></span>: € <span id="grand-total" th:text="${#numbers.formatDecimal(total,1,'POINT',2,'COMMA')}"></span></p>
+    <p th:if="${savedAnalisi != null}" class="muted" style="margin:0;font-size:13px">
+      Salvata il <span th:text="${savedAnalisi.createdAt}"></span> ·
+      <a th:href="@{/ap(voce=${savedAnalisi.voceCode})}">Vai all'originale</a>
+    </p>
+  </div>
+  <div class="sidebar-layout">
+    <div class="card">
+      <h3 style="margin-top:0">Voci</h3>
+      <input id="voce-filter" type="search" placeholder="Filtra voce…" autocomplete="off" style="margin-bottom:14px">
+      <div class="sec-block" th:each="sec:${sections}">
+        <button class="sec-toggle" type="button">
+          <span class="sec-arrow">▼</span><span th:text="${sec.key}"></span>
+        </button>
+        <ul class="list sec-list">
+          <li th:each="v:${sec.value}">
+            <a th:href="@{/ap(voce=${v})}" th:text="${v}" th:classappend="${v == selectedVoce} ? ' active' : ''"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" id="ap-card"
+         th:attr="data-voce=${selectedVoce},data-sheet=${selectedSheet},data-saved-id=${savedAnalisi?.id}">
+
+      <div th:unless="${#lists.isEmpty(components)}" class="ap-toolbar">
+        <button id="btn-modifica" type="button" class="secondary">Modifica</button>
+      </div>
+
+      <table id="ap-table">
+        <thead>
+          <tr>
+            <th>Tipo</th><th>Descrizione</th><th>UM</th>
+            <th class="right">Qtà</th><th class="right">Prezzo</th><th class="right">Totale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="c:${components}"
+              th:classappend="${c.component_type == 'lavorazione'} ? 'row-lavorazione' : ''"
+              th:attr="data-order=${c.component_order},
+                       data-qty=${c.effectiveQty},
+                       data-price=${c.effectivePrice},
+                       data-lav=${c.component_type == 'lavorazione' ? true : null}">
+            <td th:text="${c.component_type}"></td>
+            <td th:text="${c.description}"></td>
+            <td th:text="${c.unit_measure}"></td>
+            <td class="right" th:text="${c.component_type == 'lavorazione' and c.effectiveQty == 0 ? '' : #numbers.formatDecimal(c.effectiveQty,1,'POINT',3,'COMMA')}"></td>
+            <td class="right" th:text="${c.component_type == 'lavorazione' and c.effectivePrice == 0 ? '' : #numbers.formatDecimal(c.effectivePrice,1,'POINT',2,'COMMA')}"></td>
+            <td class="right" th:text="${c.component_type == 'lavorazione' and c.total == 0 ? '' : #numbers.formatDecimal(c.total,1,'POINT',2,'COMMA')}"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div th:unless="${#lists.isEmpty(components)}" id="save-panel" class="ap-save-panel" style="display:none">
+        <input id="save-titolo" type="text" placeholder="Nome analisi…" style="width:200px;flex-shrink:0">
+        <button id="btn-salva" type="button">Salva</button>
+        <button id="btn-ricarica" type="button" class="secondary">Ricarica</button>
+        <span id="save-msg" class="muted" style="font-size:13px"></span>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+// ── Sidebar toggle ──────────────────────────────────────────────────────────
+document.querySelectorAll('.sec-toggle').forEach(btn => {
+  const list = btn.nextElementSibling;
+  btn.addEventListener('click', () => {
+    const willCollapse = list.style.display !== 'none';
+    list.style.display = willCollapse ? 'none' : '';
+    btn.querySelector('.sec-arrow').textContent = willCollapse ? '▶' : '▼';
+  });
+});
+
+document.getElementById('voce-filter').addEventListener('input', function () {
+  const q = this.value.trim().toLowerCase();
+  document.querySelectorAll('.sec-block').forEach(block => {
+    const list = block.querySelector('.sec-list');
+    let anyVisible = false;
+    list.querySelectorAll('li').forEach(li => {
+      const match = !q || li.textContent.toLowerCase().includes(q);
+      li.style.display = match ? '' : 'none';
+      if (match) anyVisible = true;
+    });
+    block.style.display = anyVisible ? '' : 'none';
+    if (q && anyVisible) { list.style.display = ''; block.querySelector('.sec-arrow').textContent = '▼'; }
+  });
+});
+
+// ── Edit mode ───────────────────────────────────────────────────────────────
+(function () {
+  const btnMod    = document.getElementById('btn-modifica');
+  const savePanel = document.getElementById('save-panel');
+  if (!btnMod) return;
+
+  const card      = document.getElementById('ap-card');
+  const btnSalva  = document.getElementById('btn-salva');
+  const btnRic    = document.getElementById('btn-ricarica');
+  const titoloEl  = document.getElementById('save-titolo');
+  const msgEl     = document.getElementById('save-msg');
+  const totalEl   = document.getElementById('grand-total');
+  const savedId   = card.dataset.savedId; // present only when viewing a saved analysis
+
+  function fmt(n, dec) {
+    return n.toLocaleString('it-IT', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  }
+
+  function refreshTotal() {
+    let sum = 0;
+    document.querySelectorAll('#ap-table tbody tr').forEach(row => {
+      if (row.dataset.lav) return;
+      const qi = row.cells[3].querySelector('input');
+      const pi = row.cells[4].querySelector('input');
+      const qty   = qi ? (parseFloat(qi.value)   || 0) : parseFloat(row.dataset.qty   || 0);
+      const price = pi ? (parseFloat(pi.value)   || 0) : parseFloat(row.dataset.price || 0);
+      sum += qty * price;
+    });
+    totalEl.textContent = fmt(sum, 2);
+  }
+
+  btnMod.addEventListener('click', () => {
+    btnMod.style.display = 'none';
+    savePanel.style.display = '';
+
+    document.querySelectorAll('#ap-table tbody tr').forEach(row => {
+      if (row.dataset.lav) return;
+      const qty   = parseFloat(row.dataset.qty   || 0);
+      const price = parseFloat(row.dataset.price || 0);
+      row.cells[3].innerHTML = `<input class="edit-num" type="number" step="0.001" min="0" value="${qty.toFixed(3)}">`;
+      row.cells[4].innerHTML = `<input class="edit-num" type="number" step="0.01"  min="0" value="${price.toFixed(2)}">`;
+    });
+
+    document.querySelector('#ap-table tbody').addEventListener('input', e => {
+      if (!e.target.classList.contains('edit-num')) return;
+      const row = e.target.closest('tr');
+      const qi = row.cells[3].querySelector('input');
+      const pi = row.cells[4].querySelector('input');
+      row.cells[5].textContent = fmt((parseFloat(qi.value) || 0) * (parseFloat(pi.value) || 0), 2);
+      refreshTotal();
+    });
+  });
+
+  // Ricarica: reload page if new analysis, go to original if viewing saved
+  btnRic.addEventListener('click', () => {
+    if (savedId) window.location.href = '/ap?voce=' + encodeURIComponent(card.dataset.voce);
+    else window.location.reload();
+  });
+
+  btnSalva.addEventListener('click', () => {
+    const titolo = titoloEl.value.trim();
+    if (!titolo) { titoloEl.focus(); return; }
+
+    const rows = [];
+    document.querySelectorAll('#ap-table tbody tr').forEach(row => {
+      const lav   = !!row.dataset.lav;
+      const qi    = row.cells[3].querySelector('input');
+      const pi    = row.cells[4].querySelector('input');
+      const qty   = lav ? 0 : (qi ? parseFloat(qi.value)   || 0 : parseFloat(row.dataset.qty)   || 0);
+      const price = lav ? 0 : (pi ? parseFloat(pi.value)   || 0 : parseFloat(row.dataset.price) || 0);
+      rows.push({
+        order:       parseInt(row.dataset.order),
+        type:        row.cells[0].textContent.trim(),
+        description: row.cells[1].textContent.trim(),
+        unitMeasure: row.cells[2].textContent.trim(),
+        qty, price, total: qty * price
+      });
+    });
+
+    fetch('/ap/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        titolo,
+        voceCode:     card.dataset.voce,
+        sheetName:    card.dataset.sheet,
+        snapshotJson: JSON.stringify(rows),
+        totale:       rows.reduce((s, r) => s + r.total, 0)
+      })
+    })
+    .then(r => r.json())
+    .then(res => {
+      if (res.ok) {
+        msgEl.textContent = 'Salvato ✓';
+        titoloEl.value = '';
+        setTimeout(() => msgEl.textContent = '', 3000);
+      }
+    })
+    .catch(() => alert('Errore nel salvataggio'));
+  });
+})();
+</script>
+</body>
+</html>

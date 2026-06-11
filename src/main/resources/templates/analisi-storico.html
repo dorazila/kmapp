@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="it">
+<head><meta charset="utf-8"><title>Storico analisi</title><link rel="stylesheet" href="/css/app.css"></head>
+<body>
+<div th:replace="~{_nav :: nav}"></div>
+<main class="container">
+  <div class="card"><h1>Storico analisi prezzi</h1></div>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Titolo</th><th>Voce</th><th>Cliente</th><th>Data</th><th class="right">Totale</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr th:each="a:${analisi}">
+          <td th:text="${a.titolo}"></td>
+          <td th:text="${a.voceCode}"></td>
+          <td th:text="${a.cliente}"></td>
+          <td th:text="${a.createdAt}"></td>
+          <td class="right" th:text="${a.totale == null ? '-' : #numbers.formatDecimal(a.totale,1,'POINT',2,'COMMA')}"></td>
+          <td><a th:href="@{/ap/storico/{id}(id=${a.id})}" class="btn secondary" style="font-size:12px;padding:5px 10px">Apri</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

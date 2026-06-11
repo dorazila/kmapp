@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="it">
+<head><meta charset="utf-8"><title>Storico offerte</title><link rel="stylesheet" href="/css/app.css"></head>
+<body>
+<div th:replace="~{_nav :: nav}"></div>
+<main class="container">
+  <div class="card"><h1>Storico offerte</h1><p th:if="${message}" th:text="${message}"></p></div>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Numero</th><th>Data</th><th>Cliente</th><th>Cantiere</th><th>Agente</th><th class="right">Totale</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr th:each="o:${offerte}">
+          <td th:text="${o.numero}"></td>
+          <td th:text="${o.dataOfferta}"></td>
+          <td th:text="${o.cliente}"></td>
+          <td th:text="${o.cantiere}"></td>
+          <td th:text="${o.agente}"></td>
+          <td class="right" th:text="${o.totale == null ? '-' : #numbers.formatDecimal(o.totale,1,'POINT',2,'COMMA')}"></td>
+          <td style="display:flex;gap:6px">
+            <a th:href="@{/offerta/{id}(id=${o.id})}" class="btn secondary" style="font-size:12px;padding:5px 10px">Apri</a>
+            <form th:action="@{/offerta/delete/{id}(id=${o.id})}" method="post"><button class="danger" style="font-size:12px;padding:5px 10px">Elimina</button></form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>
