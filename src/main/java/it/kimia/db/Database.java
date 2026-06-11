@@ -90,6 +90,7 @@ public final class Database {
             """);
             st.execute("""
                 CREATE TABLE IF NOT EXISTS analisi_prezzi_voci_dettaglio (
+                    source_order INTEGER,
                     sheet_name TEXT,
                     voce_code TEXT,
                     component_order INTEGER,
@@ -102,6 +103,9 @@ public final class Database {
                 )
             """);
         }
+        try (Statement st = connection.createStatement()) {
+            st.execute("ALTER TABLE analisi_prezzi_voci_dettaglio ADD COLUMN source_order INTEGER");
+        } catch (SQLException ignored) {}
         for (String col : new String[]{"numero_offerta","cliente","cantiere","data_offerta","agente_nome"}) {
             try (Statement st = connection.createStatement()) {
                 st.execute("ALTER TABLE analisi_prezzi_salvate ADD COLUMN " + col + " TEXT");
@@ -118,25 +122,37 @@ public final class Database {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
                  Statement delete = connection.createStatement();
                  PreparedStatement insert = connection.prepareStatement(
-                     "INSERT INTO analisi_prezzi_voci_dettaglio (sheet_name, voce_code, component_order, component_type, description, unit_measure, quantity, unit_price, total_price) VALUES (?,?,?,?,?,?,?,?,?)")) {
+                     "INSERT INTO analisi_prezzi_voci_dettaglio (source_order, sheet_name, voce_code, component_order, component_type, description, unit_measure, quantity, unit_price, total_price) VALUES (?,?,?,?,?,?,?,?,?,?)")) {
 
                 String line = reader.readLine(); // header
                 delete.executeUpdate("DELETE FROM analisi_prezzi_voci_dettaglio");
 
+                int sourceOrder = 1;
+                String previousLavorazioneKey = null;
                 while ((line = reader.readLine()) != null) {
                     if (line.isBlank()) continue;
                     List<String> fields = parseCsvLine(line);
                     if (fields.size() < 9) continue;
 
-                    insert.setString(1, normalize(fields.get(0)));
-                    insert.setString(2, normalize(fields.get(1)));
-                    setNullableInt(insert, 3, fields.get(2));
-                    insert.setString(4, normalize(fields.get(3)));
-                    insert.setString(5, normalize(fields.get(4)));
-                    insert.setString(6, normalize(fields.get(5)));
-                    setNullableDouble(insert, 7, fields.get(6));
-                    setNullableDouble(insert, 8, fields.get(7));
-                    setNullableDouble(insert, 9, fields.get(8));
+                    int currentSourceOrder = sourceOrder++;
+                    String sheetName = normalize(fields.get(0));
+                    String voceCode = normalize(fields.get(1));
+                    String componentType = normalize(fields.get(3));
+                    String description = normalize(fields.get(4));
+                    String lavorazioneKey = duplicateLavorazioneKey(sheetName, voceCode, componentType, description);
+                    if (lavorazioneKey != null && lavorazioneKey.equals(previousLavorazioneKey)) continue;
+                    previousLavorazioneKey = lavorazioneKey;
+
+                    insert.setInt(1, currentSourceOrder);
+                    insert.setString(2, sheetName);
+                    insert.setString(3, voceCode);
+                    setNullableInt(insert, 4, fields.get(2));
+                    insert.setString(5, componentType);
+                    insert.setString(6, description);
+                    insert.setString(7, normalize(fields.get(5)));
+                    setNullableDouble(insert, 8, fields.get(6));
+                    setNullableDouble(insert, 9, fields.get(7));
+                    setNullableDouble(insert, 10, fields.get(8));
                     insert.addBatch();
                 }
 
@@ -181,6 +197,14 @@ public final class Database {
         if (value == null) return null;
         String trimmed = value.trim();
         return trimmed.isEmpty() ? null : trimmed;
+    }
+
+    private static String duplicateLavorazioneKey(String sheetName, String voceCode, String componentType, String description) {
+        if (!"lavorazione".equalsIgnoreCase(componentType) || description == null) return null;
+        return String.join("\u001F",
+            sheetName != null ? sheetName : "",
+            voceCode != null ? voceCode : "",
+            description);
     }
 
     private static void setNullableInt(PreparedStatement ps, int index, String raw) throws SQLException {

@@ -20,7 +20,7 @@ public class AnalisiRepository {
     }
     public List<AnalisiComponent> components(String voceCode) throws SQLException {
         List<AnalisiComponent> list = new ArrayList<>();
-        String sql = "SELECT voce_code, component_order, sheet_name, component_type, description, unit_measure, quantity, unit_price, total_price FROM analisi_prezzi_voci_dettaglio WHERE voce_code=? ORDER BY component_order";
+        String sql = "SELECT voce_code, component_order, sheet_name, component_type, description, unit_measure, quantity, unit_price, total_price FROM analisi_prezzi_voci_dettaglio WHERE voce_code=? ORDER BY COALESCE(source_order, component_order), component_order";
         try (PreparedStatement ps = Database.get().prepareStatement(sql)) {
             ps.setString(1, voceCode);
             try (ResultSet rs = ps.executeQuery()) { while (rs.next()) list.add(mapComponent(rs)); }
