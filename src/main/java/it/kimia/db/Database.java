@@ -25,9 +25,9 @@ public final class Database {
         Path dbPath = Path.of(configured).toAbsolutePath().normalize();
         if (!Files.exists(dbPath)) {
             Files.createDirectories(dbPath.getParent());
+            // Seed from classpath if available; otherwise SQLite creates an empty DB
             try (InputStream in = Database.class.getResourceAsStream("/data/" + DB_FILE_NAME)) {
-                if (in == null) throw new IllegalStateException("Database non trovato: " + dbPath);
-                Files.copy(in, dbPath);
+                if (in != null) Files.copy(in, dbPath);
             }
         }
         resolvedDbDirectory = dbPath.getParent().toString();
