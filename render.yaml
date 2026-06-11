@@ -1,7 +1,7 @@
 services:
   - type: web
     name: kmapp
-    env: java
+    env: docker
     plan: free
     buildCommand: mvn clean package -DskipTests
     startCommand: java -Xmx400m -jar target/kimia-webapp-0.1.0.jar
