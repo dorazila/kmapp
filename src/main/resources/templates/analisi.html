@@ -10,7 +10,7 @@
 <main class="container">
   <div class="card">
     <h1>Analisi prezzi<span th:if="${savedAnalisi != null}">: <em th:text="${savedAnalisi.titolo}" style="font-style:normal;color:var(--green)"></em></span></h1>
-    <p class="total">Totale voce <span th:text="${selectedVoce}"></span>: € <span id="grand-total" th:text="${#numbers.formatDecimal(total,1,'POINT',2,'COMMA')}"></span></p>
+    <p class="total" th:text="${selectedVoce}"></p>
     <p th:if="${savedAnalisi != null}" class="muted" style="margin:0;font-size:13px">
       Salvata il <span th:text="${savedAnalisi.createdAt}"></span> ·
       <a th:href="@{/ap(voce=${savedAnalisi.voceCode})}">Vai all'originale</a>
@@ -37,7 +37,10 @@
 
       <div th:unless="${#lists.isEmpty(components)}" class="ap-toolbar">
         <button id="btn-modifica" type="button" class="secondary">Modifica</button>
+        <button id="btn-stampa" type="button" class="secondary">Stampa</button>
       </div>
+
+      <div th:if="${introDescription != null and introDescription != ''}" class="ap-intro" th:text="${introDescription}"></div>
 
       <table id="ap-table">
         <thead>
@@ -48,7 +51,7 @@
         </thead>
         <tbody>
           <tr th:each="c:${components}"
-              th:classappend="${c.component_type == 'lavorazione'} ? 'row-lavorazione' : ''"
+              th:classappend="${c.component_type == 'lavorazione' or c.component_type == 'materiale' or c.component_type == 'noli e trasporti'} ? 'row-ap-bold' : ''"
               th:attr="data-order=${c.component_order},
                        data-qty=${c.effectiveQty},
                        data-price=${c.effectivePrice},
@@ -61,6 +64,12 @@
             <td class="right" th:text="${c.component_type == 'lavorazione' and c.total == 0 ? '' : #numbers.formatDecimal(c.total,1,'POINT',2,'COMMA')}"></td>
           </tr>
         </tbody>
+        <tfoot th:unless="${#lists.isEmpty(components)}">
+          <tr class="ap-total-row">
+            <td colspan="5" class="right">Totale complessivo</td>
+            <td class="right" id="table-total" th:text="${#numbers.formatDecimal(total,1,'POINT',2,'COMMA')}"></td>
+          </tr>
+        </tfoot>
       </table>
 
       <div th:unless="${#lists.isEmpty(components)}" id="save-panel" class="ap-save-panel" style="display:none">
@@ -106,10 +115,12 @@ document.getElementById('voce-filter').addEventListener('input', function () {
 
   const card      = document.getElementById('ap-card');
   const btnSalva  = document.getElementById('btn-salva');
+  const btnStampa = document.getElementById('btn-stampa');
   const btnRic    = document.getElementById('btn-ricarica');
   const titoloEl  = document.getElementById('save-titolo');
   const msgEl     = document.getElementById('save-msg');
   const totalEl   = document.getElementById('grand-total');
+  const tableTotalEl = document.getElementById('table-total');
   const savedId   = card.dataset.savedId; // present only when viewing a saved analysis
 
   function fmt(n, dec) {
@@ -126,8 +137,12 @@ document.getElementById('voce-filter').addEventListener('input', function () {
       const price = pi ? (parseFloat(pi.value)   || 0) : parseFloat(row.dataset.price || 0);
       sum += qty * price;
     });
-    totalEl.textContent = fmt(sum, 2);
+    const formatted = fmt(sum, 2);
+    if (totalEl) totalEl.textContent = formatted;
+    if (tableTotalEl) tableTotalEl.textContent = formatted;
   }
+
+  btnStampa.addEventListener('click', () => window.print());
 
   btnMod.addEventListener('click', () => {
     btnMod.style.display = 'none';

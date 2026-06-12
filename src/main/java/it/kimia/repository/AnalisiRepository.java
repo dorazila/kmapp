@@ -27,6 +27,15 @@ public class AnalisiRepository {
         }
         return list;
     }
+    public String introDescription(String voceCode) throws SQLException {
+        String sql = "SELECT intro_description FROM analisi_prezzi_voci_meta WHERE voce_code=? LIMIT 1";
+        try (PreparedStatement ps = Database.get().prepareStatement(sql)) {
+            ps.setString(1, voceCode);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next() ? rs.getString("intro_description") : "";
+            }
+        }
+    }
     public List<SavedAnalisi> saved() throws SQLException {
         List<SavedAnalisi> list = new ArrayList<>();
         String sql = "SELECT id,titolo,sheet_name,voce_code,snapshot_json,totale,created_at,numero_offerta,cliente,cantiere,data_offerta,agente_nome FROM analisi_prezzi_salvate ORDER BY id DESC";

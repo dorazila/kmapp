@@ -28,6 +28,7 @@ public class AnalisiController {
         model.addAttribute("sections", sections);
         model.addAttribute("selectedVoce", voce);
         model.addAttribute("selectedSheet", components.isEmpty() ? "" : components.get(0).getSheet_name());
+        model.addAttribute("introDescription", voce == null ? "" : repo.introDescription(voce));
         model.addAttribute("components", components);
         model.addAttribute("total", components.stream().mapToDouble(AnalisiComponent::getTotal).sum());
         return "analisi";
@@ -56,6 +57,7 @@ public class AnalisiController {
         model.addAttribute("sections", repo.sections());
         model.addAttribute("selectedVoce", saved.getVoceCode());
         model.addAttribute("selectedSheet", saved.getSheetName());
+        model.addAttribute("introDescription", repo.introDescription(saved.getVoceCode()));
         model.addAttribute("components", components);
         model.addAttribute("total", saved.getTotale() != null ? saved.getTotale() : 0.0);
         model.addAttribute("savedAnalisi", saved);

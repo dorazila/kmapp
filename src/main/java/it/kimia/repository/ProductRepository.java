@@ -9,11 +9,12 @@ import java.util.*;
 
 @Repository
 public class ProductRepository {
-    public List<Product> findAll(String category, String q) throws SQLException {
+    public List<Product> findAll(String category, String q, String listinoType) throws SQLException {
         List<Product> out = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("SELECT product_code, product_name, description, unit_measure, category_name, listino_price, discount_rate, net_price FROM products WHERE 1=1");
+        StringBuilder sql = new StringBuilder("SELECT product_code, product_name, description, unit_measure, category_name, listino_price, discount_rate, net_price, listino_type FROM products WHERE 1=1");
         List<Object> args = new ArrayList<>();
         if (category != null && !category.isBlank() && !"Tutti i prodotti".equals(category)) { sql.append(" AND category_name=?"); args.add(category); }
+        if (listinoType != null && !listinoType.isBlank() && !"Tutti".equals(listinoType)) { sql.append(" AND listino_type=?"); args.add(listinoType); }
         if (q != null && !q.isBlank()) { sql.append(" AND (lower(product_name) LIKE ? OR lower(product_code) LIKE ? OR lower(description) LIKE ?)"); String s="%"+q.toLowerCase()+"%"; args.add(s); args.add(s); args.add(s); }
         sql.append(" ORDER BY category_name, product_name, product_code");
         try (PreparedStatement ps = Database.get().prepareStatement(sql.toString())) {
@@ -26,7 +27,7 @@ public class ProductRepository {
     }
 
     public Optional<Product> findByCode(String code) throws SQLException {
-        try (PreparedStatement ps = Database.get().prepareStatement("SELECT product_code, product_name, description, unit_measure, category_name, listino_price, discount_rate, net_price FROM products WHERE product_code=? LIMIT 1")) {
+        try (PreparedStatement ps = Database.get().prepareStatement("SELECT product_code, product_name, description, unit_measure, category_name, listino_price, discount_rate, net_price, listino_type FROM products WHERE product_code=? LIMIT 1")) {
             ps.setString(1, code);
             try (ResultSet rs = ps.executeQuery()) { return rs.next() ? Optional.of(map(rs)) : Optional.empty(); }
         }
@@ -43,7 +44,7 @@ public class ProductRepository {
 
     private Product map(ResultSet rs) throws SQLException {
         Product p = new Product(rs.getString("product_code"), rs.getString("product_name"), rs.getString("description"), rs.getString("unit_measure"), rs.getString("category_name"), rs.getDouble("listino_price"), rs.getDouble("discount_rate"), rs.getDouble("net_price"));
-        p.setListinoType("NLIS");
+        p.setListinoType(rs.getString("listino_type"));
         return p;
     }
 }
