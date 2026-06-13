@@ -9,4 +9,8 @@
     <a href="/ap">Analisi prezzi</a>
     <a href="/ap/storico">Storico AP</a>
   </div>
+  <form th:if="${currentUser != null}" action="/logout" method="post" class="user-nav">
+    <span th:text="${currentUser}"></span>
+    <button type="submit" class="secondary">Esci</button>
+  </form>
 </div>

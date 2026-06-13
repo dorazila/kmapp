@@ -70,10 +70,20 @@ public final class Database {
     }
 
     private static void createTablesIfNeeded() throws SQLException {
+        String defaultOwner = sqlLiteral("admin");
         try (Statement st = connection.createStatement()) {
+            st.execute("""
+                CREATE TABLE IF NOT EXISTS app_users (
+                    username TEXT PRIMARY KEY,
+                    password_hash TEXT NOT NULL,
+                    display_name TEXT,
+                    created_at TEXT DEFAULT (datetime('now','localtime'))
+                )
+            """);
             st.execute("""
                 CREATE TABLE IF NOT EXISTS offerte (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    owner_user TEXT NOT NULL DEFAULT 'admin',
                     numero TEXT,
                     data_offerta TEXT NOT NULL,
                     cliente TEXT,
@@ -93,6 +103,7 @@ public final class Database {
             st.execute("""
                 CREATE TABLE IF NOT EXISTS analisi_prezzi_salvate (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    owner_user TEXT NOT NULL DEFAULT 'admin',
                     titolo TEXT,
                     sheet_name TEXT,
                     voce_code TEXT,
@@ -157,11 +168,73 @@ public final class Database {
         try (Statement st = connection.createStatement()) {
             st.execute("ALTER TABLE products ADD COLUMN listino_type TEXT NOT NULL DEFAULT 'NLIS'");
         } catch (SQLException ignored) {}
+        try (Statement st = connection.createStatement()) {
+            st.execute("ALTER TABLE offerte ADD COLUMN owner_user TEXT NOT NULL DEFAULT " + defaultOwner);
+        } catch (SQLException ignored) {}
+        try (Statement st = connection.createStatement()) {
+            st.execute("ALTER TABLE analisi_prezzi_salvate ADD COLUMN owner_user TEXT NOT NULL DEFAULT " + defaultOwner);
+        } catch (SQLException ignored) {}
         for (String col : new String[]{"numero_offerta","cliente","cantiere","data_offerta","agente_nome"}) {
             try (Statement st = connection.createStatement()) {
                 st.execute("ALTER TABLE analisi_prezzi_salvate ADD COLUMN " + col + " TEXT");
             } catch (SQLException ignored) {}
         }
+        try (Statement st = connection.createStatement()) {
+            st.execute("CREATE INDEX IF NOT EXISTS idx_offerte_owner_created ON offerte(owner_user, created_at DESC)");
+            st.execute("CREATE INDEX IF NOT EXISTS idx_analisi_salvate_owner_created ON analisi_prezzi_salvate(owner_user, created_at DESC)");
+        }
+        ensureInitialUsers();
+    }
+
+    private static void ensureInitialUsers() throws SQLException {
+        insertUserIfMissing("admin", "admin", "admin");
+
+        String configuredUser = initialUsername();
+        if (!"admin".equalsIgnoreCase(configuredUser)) {
+            insertUserIfMissing(configuredUser, initialPassword(), initialDisplayName(configuredUser));
+        }
+    }
+
+    private static void insertUserIfMissing(String username, String password, String displayName) throws SQLException {
+        try (PreparedStatement ps = connection.prepareStatement("""
+                INSERT INTO app_users (username, password_hash, display_name)
+                VALUES (?,?,?)
+                ON CONFLICT(username) DO NOTHING
+             """)) {
+            ps.setString(1, username);
+            ps.setString(2, it.kimia.util.Passwords.hash(password));
+            ps.setString(3, displayName);
+            ps.executeUpdate();
+        }
+    }
+
+    private static String initialUsername() {
+        String value = normalize(System.getProperty(
+            "kimia.admin.username",
+            System.getenv().getOrDefault("KIMIA_ADMIN_USER", "admin")
+        ));
+        return value != null ? value : "admin";
+    }
+
+    private static String initialPassword() {
+        String value = System.getProperty(
+            "kimia.admin.password",
+            System.getenv().getOrDefault("KIMIA_ADMIN_PASSWORD", "admin")
+        );
+        return value == null || value.isBlank() ? "admin" : value;
+    }
+
+    private static String initialDisplayName(String username) {
+        String value = System.getProperty(
+            "kimia.admin.display-name",
+            System.getenv().getOrDefault("KIMIA_ADMIN_DISPLAY_NAME", username)
+        );
+        return value == null || value.isBlank() ? username : value.trim();
+    }
+
+    private static String sqlLiteral(String value) {
+        String normalized = value == null || value.isBlank() ? "admin" : value;
+        return "'" + normalized.replace("'", "''") + "'";
     }
 
     private static Path resolveCsvDirectory(Path dbDirectory) {

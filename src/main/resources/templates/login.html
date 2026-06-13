@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Accesso</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<main class="container login-container">
+  <div class="card login-card">
+    <h1>Accesso</h1>
+    <p class="muted">Accedi con un account @kimia.it. Per i test e' disponibile admin / admin.</p>
+    <p th:if="${error}" class="login-error" th:text="${error}"></p>
+    <form action="/login" method="post" class="login-form">
+      <input type="hidden" name="next" th:value="${next}">
+      <div>
+        <label>Utente</label>
+        <input name="username" th:value="${username}" autocomplete="username" autofocus>
+      </div>
+      <div>
+        <label>Password</label>
+        <input name="password" type="password" autocomplete="current-password">
+      </div>
+      <button type="submit">Entra</button>
+    </form>
+  </div>
+</main>
+</body>
+</html>

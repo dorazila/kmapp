@@ -1,9 +1,11 @@
 package it.kimia.controller;
 
 import it.kimia.model.SavedOfferta;
+import it.kimia.service.AuthService;
 import it.kimia.service.CartService;
 import it.kimia.service.OffertaService;
 import it.kimia.service.TrasportoService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +19,8 @@ public class OffertaController {
     private final OffertaService offerte;
     private final CartService cart;
     private final TrasportoService trasporto;
-    public OffertaController(OffertaService offerte, CartService cart, TrasportoService trasporto) { this.offerte=offerte; this.cart=cart; this.trasporto=trasporto; }
+    private final AuthService auth;
+    public OffertaController(OffertaService offerte, CartService cart, TrasportoService trasporto, AuthService auth) { this.offerte=offerte; this.cart=cart; this.trasporto=trasporto; this.auth=auth; }
 
     @GetMapping public String form(Model model) throws Exception {
         model.addAttribute("regions", trasporto.regioni());
@@ -33,14 +36,14 @@ public class OffertaController {
         model.addAttribute("cartTotal", cart.total());
         return "offerta-preview";
     }
-    @PostMapping("/save") public String save(@ModelAttribute OffertaService.OffertaForm form, RedirectAttributes ra) throws Exception {
-        offerte.save(normalizeTrasporto(form));
+    @PostMapping("/save") public String save(@ModelAttribute OffertaService.OffertaForm form, HttpSession session, RedirectAttributes ra) throws Exception {
+        offerte.save(normalizeTrasporto(form), currentUser(session));
         ra.addFlashAttribute("message", "Offerta salvata correttamente.");
         return "redirect:/offerta/storico";
     }
-    @GetMapping("/storico") public String storico(Model model) throws Exception { model.addAttribute("offerte", offerte.all()); return "offerte-storico"; }
-    @GetMapping("/{id}") public String open(@PathVariable int id, Model model) throws Exception {
-        SavedOfferta o = offerte.find(id).orElseThrow();
+    @GetMapping("/storico") public String storico(Model model, HttpSession session) throws Exception { model.addAttribute("offerte", offerte.all(currentUser(session))); return "offerte-storico"; }
+    @GetMapping("/{id}") public String open(@PathVariable int id, Model model, HttpSession session) throws Exception {
+        SavedOfferta o = offerte.find(id, currentUser(session)).orElseThrow();
         offerte.loadIntoCart(o);
         OffertaService.OffertaForm form = new OffertaService.OffertaForm(o.getNumero(), o.getDataOfferta(), o.getCliente(), o.getCantiere(), o.getRegione() != null ? o.getRegione() : "Umbria", String.valueOf(o.getScadenzaGg()), o.getAgente(), o.getEmail(), o.getTel(), o.getNote(), o.getTrasporto(), false);
         model.addAttribute("html", offerte.previewHtml(form));
@@ -48,9 +51,9 @@ public class OffertaController {
         model.addAttribute("cartTotal", cart.total());
         return "offerta-preview";
     }
-    @PostMapping("/delete/{id}") public String delete(@PathVariable int id) throws Exception { offerte.delete(id); return "redirect:/offerta/storico"; }
-    @GetMapping("/{id}/html") @ResponseBody public String html(@PathVariable int id) throws Exception {
-        SavedOfferta o = offerte.find(id).orElseThrow();
+    @PostMapping("/delete/{id}") public String delete(@PathVariable int id, HttpSession session) throws Exception { offerte.delete(id, currentUser(session)); return "redirect:/offerta/storico"; }
+    @GetMapping("/{id}/html") @ResponseBody public String html(@PathVariable int id, HttpSession session) throws Exception {
+        SavedOfferta o = offerte.find(id, currentUser(session)).orElseThrow();
         return o.getItemsJson();
     }
 
@@ -97,5 +100,11 @@ public class OffertaController {
 
     private static boolean isBlank(String value) {
         return value == null || value.isBlank();
+    }
+
+    private String currentUser(HttpSession session) {
+        String username = auth.currentUsername(session);
+        if (username == null) throw new IllegalStateException("Utente non autenticato");
+        return username;
     }
 }

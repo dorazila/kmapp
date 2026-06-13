@@ -36,22 +36,26 @@ public class AnalisiRepository {
             }
         }
     }
-    public List<SavedAnalisi> saved() throws SQLException {
+    public List<SavedAnalisi> saved(String ownerUser) throws SQLException {
         List<SavedAnalisi> list = new ArrayList<>();
-        String sql = "SELECT id,titolo,sheet_name,voce_code,snapshot_json,totale,created_at,numero_offerta,cliente,cantiere,data_offerta,agente_nome FROM analisi_prezzi_salvate ORDER BY id DESC";
-        try (PreparedStatement ps = Database.get().prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) { SavedAnalisi a = new SavedAnalisi(); a.setId(rs.getInt("id")); a.setTitolo(rs.getString("titolo")); a.setSheetName(rs.getString("sheet_name")); a.setVoceCode(rs.getString("voce_code")); a.setSnapshotJson(rs.getString("snapshot_json")); double t=rs.getDouble("totale"); a.setTotale(rs.wasNull()?null:t); a.setCreatedAt(rs.getString("created_at")); a.setNumeroOfferta(rs.getString("numero_offerta")); a.setCliente(rs.getString("cliente")); a.setCantiere(rs.getString("cantiere")); a.setDataOfferta(rs.getString("data_offerta")); a.setAgenteNome(rs.getString("agente_nome")); list.add(a); }
+        String sql = "SELECT id,owner_user,titolo,sheet_name,voce_code,snapshot_json,totale,created_at,numero_offerta,cliente,cantiere,data_offerta,agente_nome FROM analisi_prezzi_salvate WHERE owner_user=? ORDER BY id DESC";
+        try (PreparedStatement ps = Database.get().prepareStatement(sql)) {
+            ps.setString(1, ownerUser);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) { SavedAnalisi a = new SavedAnalisi(); a.setId(rs.getInt("id")); a.setOwnerUser(rs.getString("owner_user")); a.setTitolo(rs.getString("titolo")); a.setSheetName(rs.getString("sheet_name")); a.setVoceCode(rs.getString("voce_code")); a.setSnapshotJson(rs.getString("snapshot_json")); double t=rs.getDouble("totale"); a.setTotale(rs.wasNull()?null:t); a.setCreatedAt(rs.getString("created_at")); a.setNumeroOfferta(rs.getString("numero_offerta")); a.setCliente(rs.getString("cliente")); a.setCantiere(rs.getString("cantiere")); a.setDataOfferta(rs.getString("data_offerta")); a.setAgenteNome(rs.getString("agente_nome")); list.add(a); }
+            }
         }
         return list;
     }
-    public SavedAnalisi findSavedById(int id) throws SQLException {
-        String sql = "SELECT id,titolo,sheet_name,voce_code,snapshot_json,totale,created_at FROM analisi_prezzi_salvate WHERE id=?";
+    public SavedAnalisi findSavedById(int id, String ownerUser) throws SQLException {
+        String sql = "SELECT id,owner_user,titolo,sheet_name,voce_code,snapshot_json,totale,created_at FROM analisi_prezzi_salvate WHERE id=? AND owner_user=?";
         try (PreparedStatement ps = Database.get().prepareStatement(sql)) {
             ps.setInt(1, id);
+            ps.setString(2, ownerUser);
             try (ResultSet rs = ps.executeQuery()) {
                 if (!rs.next()) throw new SQLException("Analisi non trovata: " + id);
                 SavedAnalisi a = new SavedAnalisi();
-                a.setId(rs.getInt("id")); a.setTitolo(rs.getString("titolo"));
+                a.setId(rs.getInt("id")); a.setOwnerUser(rs.getString("owner_user")); a.setTitolo(rs.getString("titolo"));
                 a.setSheetName(rs.getString("sheet_name")); a.setVoceCode(rs.getString("voce_code"));
                 a.setSnapshotJson(rs.getString("snapshot_json"));
                 double t = rs.getDouble("totale"); a.setTotale(rs.wasNull() ? null : t);
@@ -61,14 +65,15 @@ public class AnalisiRepository {
         }
     }
 
-    public void saveAnalisi(String titolo, String voceCode, String sheetName, String snapshotJson, Double totale) throws SQLException {
-        String sql = "INSERT INTO analisi_prezzi_salvate (titolo, voce_code, sheet_name, snapshot_json, totale) VALUES (?,?,?,?,?)";
+    public void saveAnalisi(String titolo, String voceCode, String sheetName, String snapshotJson, Double totale, String ownerUser) throws SQLException {
+        String sql = "INSERT INTO analisi_prezzi_salvate (owner_user, titolo, voce_code, sheet_name, snapshot_json, totale) VALUES (?,?,?,?,?,?)";
         try (PreparedStatement ps = Database.get().prepareStatement(sql)) {
-            ps.setString(1, titolo);
-            ps.setString(2, voceCode);
-            ps.setString(3, sheetName);
-            ps.setString(4, snapshotJson);
-            if (totale != null) ps.setDouble(5, totale); else ps.setNull(5, Types.REAL);
+            ps.setString(1, ownerUser);
+            ps.setString(2, titolo);
+            ps.setString(3, voceCode);
+            ps.setString(4, sheetName);
+            ps.setString(5, snapshotJson);
+            if (totale != null) ps.setDouble(6, totale); else ps.setNull(6, Types.REAL);
             ps.executeUpdate();
         }
     }

@@ -17,4 +17,7 @@
 .ap-total-row td{font-weight:800;background:#f1f5f9 !important;color:var(--blue)}
 .ap-save-panel{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
 .edit-num{width:90px;padding:4px 6px;font-size:13px;text-align:right;border:1px solid var(--blue);border-radius:4px}
+.user-nav{margin-left:auto;display:flex;gap:8px;align-items:center;font-size:13px;color:#6b7280}
+.user-nav button{padding:5px 9px;font-size:12px}
+.login-container{max-width:430px;margin-top:72px}.login-card h1{margin-top:0}.login-form{display:grid;gap:12px}.login-error{border:1px solid #f4b4ad;background:#fff5f4;color:#9b1c1c;border-radius:7px;padding:9px 10px}
 @media print{.topbar,.sidebar-layout>.card:first-child,.ap-toolbar,.ap-save-panel{display:none !important}body{background:#fff}.container{max-width:none;margin:0;padding:0}.sidebar-layout{display:block}.card{border:none;box-shadow:none;padding:0;margin:0}a{color:inherit}}

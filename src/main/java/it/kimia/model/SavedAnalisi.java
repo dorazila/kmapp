@@ -2,6 +2,7 @@ package it.kimia.model;
 
 public class SavedAnalisi {
     private int id;
+    private String ownerUser;
     private String titolo;
     private String sheetName;
     private String voceCode;
@@ -15,6 +16,7 @@ public class SavedAnalisi {
     private String agenteNome;
 
     public int    getId()             { return id; }
+    public String getOwnerUser()      { return ownerUser; }
     public String getTitolo()         { return titolo; }
     public String getSheetName()      { return sheetName; }
     public String getVoceCode()       { return voceCode; }
@@ -28,6 +30,7 @@ public class SavedAnalisi {
     public String getAgenteNome()     { return agenteNome; }
 
     public void setId(int v)              { this.id = v; }
+    public void setOwnerUser(String v)    { this.ownerUser = v; }
     public void setTitolo(String v)       { this.titolo = v; }
     public void setSheetName(String v)    { this.sheetName = v; }
     public void setVoceCode(String v)     { this.voceCode = v; }

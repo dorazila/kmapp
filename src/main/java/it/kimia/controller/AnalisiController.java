@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.kimia.model.AnalisiComponent;
 import it.kimia.repository.AnalisiRepository;
+import it.kimia.service.AuthService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +19,8 @@ import java.util.Map;
 public class AnalisiController {
     private final AnalisiRepository repo;
     private final ObjectMapper mapper;
-    public AnalisiController(AnalisiRepository repo, ObjectMapper mapper) { this.repo = repo; this.mapper = mapper; }
+    private final AuthService auth;
+    public AnalisiController(AnalisiRepository repo, ObjectMapper mapper, AuthService auth) { this.repo = repo; this.mapper = mapper; this.auth = auth; }
 
     @GetMapping
     public String index(@RequestParam(required = false) String voce, Model model) throws Exception {
@@ -35,8 +38,8 @@ public class AnalisiController {
     }
 
     @GetMapping("/storico/{id}")
-    public String openSaved(@PathVariable int id, Model model) throws Exception {
-        var saved = repo.findSavedById(id);
+    public String openSaved(@PathVariable int id, Model model, HttpSession session) throws Exception {
+        var saved = repo.findSavedById(id, currentUser(session));
         List<Map<String, Object>> rows = mapper.readValue(saved.getSnapshotJson(), new TypeReference<>() {});
         List<AnalisiComponent> components = rows.stream().map(row -> {
             AnalisiComponent c = new AnalisiComponent();
@@ -66,19 +69,25 @@ public class AnalisiController {
 
     @PostMapping("/save")
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> save(@RequestBody Map<String, Object> body) throws Exception {
+    public ResponseEntity<Map<String, Object>> save(@RequestBody Map<String, Object> body, HttpSession session) throws Exception {
         String titolo       = (String) body.get("titolo");
         String voceCode     = (String) body.get("voceCode");
         String sheetName    = (String) body.get("sheetName");
         String snapshotJson = (String) body.get("snapshotJson");
         Double totale = body.get("totale") != null ? ((Number) body.get("totale")).doubleValue() : null;
-        repo.saveAnalisi(titolo, voceCode, sheetName, snapshotJson, totale);
+        repo.saveAnalisi(titolo, voceCode, sheetName, snapshotJson, totale, currentUser(session));
         return ResponseEntity.ok(Map.of("ok", true));
     }
 
     @GetMapping("/storico")
-    public String storico(Model model) throws Exception {
-        model.addAttribute("analisi", repo.saved());
+    public String storico(Model model, HttpSession session) throws Exception {
+        model.addAttribute("analisi", repo.saved(currentUser(session)));
         return "analisi-storico";
+    }
+
+    private String currentUser(HttpSession session) {
+        String username = auth.currentUsername(session);
+        if (username == null) throw new IllegalStateException("Utente non autenticato");
+        return username;
     }
 }

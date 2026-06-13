@@ -2,6 +2,7 @@ package it.kimia.model;
 
 public class SavedOfferta {
     private int id;
+    private String ownerUser;
     private String numero;
     private String dataOfferta;
     private String cliente;
@@ -18,6 +19,7 @@ public class SavedOfferta {
     private String createdAt;
 
     public int    getId()          { return id; }
+    public String getOwnerUser()   { return ownerUser; }
     public String getNumero()      { return numero; }
     public String getDataOfferta() { return dataOfferta; }
     public String getCliente()     { return cliente; }
@@ -34,6 +36,7 @@ public class SavedOfferta {
     public String getCreatedAt()   { return createdAt; }
 
     public void setId(int v)           { this.id = v; }
+    public void setOwnerUser(String v) { this.ownerUser = v; }
     public void setNumero(String v)    { this.numero = v; }
     public void setDataOfferta(String v) { this.dataOfferta = v; }
     public void setCliente(String v)   { this.cliente = v; }
