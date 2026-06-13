@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class CartItem {
     private String product_code;
     private String product_name;
+    private String description;
     private String category_name;
     private String unit_measure;
     private double net_price;
@@ -18,6 +19,7 @@ public class CartItem {
     public CartItem(Product p) {
         this.product_code  = p.getProductCode();
         this.product_name  = p.getProductName();
+        this.description   = p.getDescription();
         this.category_name = p.getCategoryName();
         this.unit_measure  = p.getUnitMeasure();
         this.net_price     = p.getNetPrice();
@@ -39,6 +41,7 @@ public class CartItem {
 
     public String getProduct_code()   { return product_code; }
     public String getProduct_name()   { return product_name; }
+    public String getDescription()    { return description; }
     public String getCategory_name()  { return category_name; }
     public String getUnit_measure()   { return unit_measure; }
     public double getNet_price()      { return net_price; }
@@ -48,6 +51,7 @@ public class CartItem {
 
     public void setProduct_code(String v)  { this.product_code = v; }
     public void setProduct_name(String v)  { this.product_name = v; }
+    public void setDescription(String v)   { this.description = v; }
     public void setCategory_name(String v) { this.category_name = v; }
     public void setUnit_measure(String v)  { this.unit_measure = v; }
     public void setNet_price(double v)     { this.net_price = v; }

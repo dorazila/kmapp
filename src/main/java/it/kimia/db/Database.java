@@ -202,7 +202,7 @@ public final class Database {
         Map<String, String> introDescriptions = readLegacyAnalisiDescriptions();
         try (BufferedReader reader = openCsvReader(csvFile(AP_CSV_FILE), AP_CSV_RESOURCE);
              BufferedWriter writer = Files.newBufferedWriter(target, StandardCharsets.UTF_8)) {
-            writeCsvRow(writer, "sheet_name", "voce_code", "intro_description", "component_order",
+            writeCsvRow(writer, "sheet_name", "voce_code", "descr_code", "intro_description", "component_order",
                 "component_type", "description", "unit_measure", "quantity", "unit_price", "total_price");
             String line = reader.readLine(); // header
             while ((line = reader.readLine()) != null) {
@@ -210,8 +210,9 @@ public final class Database {
                 List<String> fields = parseCsvLine(line);
                 if (fields.size() < 9) continue;
                 String key = csvMetaKey(fields.get(0), fields.get(1));
+                String[] voceParts = splitVoceCode(fields.get(1));
                 writeCsvRow(writer,
-                    fields.get(0), fields.get(1), introDescriptions.getOrDefault(key, ""),
+                    fields.get(0), voceParts[0], voceParts[1], introDescriptions.getOrDefault(key, ""),
                     fields.get(2), fields.get(3), fields.get(4), fields.get(5),
                     fields.get(6), fields.get(7), fields.get(8));
             }
@@ -491,6 +492,9 @@ public final class Database {
                      "INSERT INTO analisi_prezzi_voci_dettaglio (source_order, sheet_name, voce_code, component_order, component_type, description, unit_measure, quantity, unit_price, total_price) VALUES (?,?,?,?,?,?,?,?,?,?)")) {
 
                 String line = reader.readLine(); // header
+                List<String> header = line != null ? parseCsvLine(line) : List.of();
+                boolean hasDescrCode = header.contains("descr_code");
+                int offset = hasDescrCode ? 1 : 0;
                 delete.executeUpdate("DELETE FROM analisi_prezzi_voci_dettaglio");
 
                 int sourceOrder = 1;
@@ -498,13 +502,13 @@ public final class Database {
                 while ((line = reader.readLine()) != null) {
                     if (line.isBlank()) continue;
                     List<String> fields = parseCsvLine(line);
-                    if (fields.size() < 10) continue;
+                    if (fields.size() < 10 + offset) continue;
 
                     int currentSourceOrder = sourceOrder++;
                     String sheetName = normalize(fields.get(0));
-                    String voceCode = normalize(fields.get(1));
-                    String componentType = normalize(fields.get(4));
-                    String description = normalize(fields.get(5));
+                    String voceCode = hasDescrCode ? combineVoceCode(fields.get(1), fields.get(2)) : normalize(fields.get(1));
+                    String componentType = normalize(fields.get(4 + offset));
+                    String description = normalize(fields.get(5 + offset));
                     String lavorazioneKey = duplicateLavorazioneKey(sheetName, voceCode, componentType, description);
                     if (lavorazioneKey != null && lavorazioneKey.equals(previousLavorazioneKey)) continue;
                     previousLavorazioneKey = lavorazioneKey;
@@ -512,13 +516,13 @@ public final class Database {
                     insert.setInt(1, currentSourceOrder);
                     insert.setString(2, sheetName);
                     insert.setString(3, voceCode);
-                    setNullableInt(insert, 4, fields.get(3));
+                    setNullableInt(insert, 4, fields.get(3 + offset));
                     insert.setString(5, componentType);
                     insert.setString(6, description);
-                    insert.setString(7, normalize(fields.get(6)));
-                    setNullableDouble(insert, 8, fields.get(7));
-                    setNullableDouble(insert, 9, fields.get(8));
-                    setNullableDouble(insert, 10, fields.get(9));
+                    insert.setString(7, normalize(fields.get(6 + offset)));
+                    setNullableDouble(insert, 8, fields.get(7 + offset));
+                    setNullableDouble(insert, 9, fields.get(8 + offset));
+                    setNullableDouble(insert, 10, fields.get(9 + offset));
                     insert.addBatch();
                 }
 
@@ -542,18 +546,21 @@ public final class Database {
                      "INSERT INTO analisi_prezzi_voci_meta (sheet_name, voce_code, intro_description) VALUES (?,?,?)")) {
 
                 String line = reader.readLine(); // header
+                List<String> header = line != null ? parseCsvLine(line) : List.of();
+                boolean hasDescrCode = header.contains("descr_code");
+                int introIndex = hasDescrCode ? 3 : 2;
                 delete.executeUpdate("DELETE FROM analisi_prezzi_voci_meta");
                 Map<String, String[]> descriptions = new LinkedHashMap<>();
 
                 while ((line = reader.readLine()) != null) {
                     if (line.isBlank()) continue;
                     List<String> fields = parseCsvLine(line);
-                    if (fields.size() < 3) continue;
+                    if (fields.size() <= introIndex) continue;
 
                     String sheetName = normalize(fields.get(0));
-                    String voceCode = normalize(fields.get(1));
+                    String voceCode = hasDescrCode ? combineVoceCode(fields.get(1), fields.get(2)) : normalize(fields.get(1));
                     if (sheetName == null || voceCode == null) continue;
-                    descriptions.putIfAbsent(csvMetaKey(sheetName, voceCode), new String[]{sheetName, voceCode, normalize(fields.get(2))});
+                    descriptions.putIfAbsent(csvMetaKey(sheetName, voceCode), new String[]{sheetName, voceCode, normalize(fields.get(introIndex))});
                 }
 
                 for (String[] description : descriptions.values()) {
@@ -607,6 +614,26 @@ public final class Database {
 
     private static String csvMetaKey(String sheetName, String voceCode) {
         return (sheetName != null ? sheetName.trim() : "") + "\u001F" + (voceCode != null ? voceCode.trim() : "");
+    }
+
+    private static String[] splitVoceCode(String raw) {
+        String value = normalize(raw);
+        if (value == null) return new String[]{"", ""};
+        int separator = value.indexOf(" - ");
+        if (separator < 0) separator = value.indexOf('-');
+        if (separator < 0) return new String[]{value, ""};
+        return new String[]{
+            value.substring(0, separator).trim(),
+            value.substring(separator + (value.startsWith(" - ", separator) ? 3 : 1)).trim()
+        };
+    }
+
+    private static String combineVoceCode(String code, String description) {
+        String normalizedCode = normalize(code);
+        String normalizedDescription = normalize(description);
+        if (normalizedCode == null) return null;
+        if (normalizedDescription == null) return normalizedCode;
+        return normalizedCode + " - " + normalizedDescription;
     }
 
     private static String normalizeListinoType(String value) {

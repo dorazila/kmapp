@@ -119,11 +119,14 @@ public final class HtmlBuilder {
                 "<td style=\"padding:7px 8px;text-align:right;vertical-align:top;\">" + fmtN(r.getListino_price()) + "</td>" +
                 "<td style=\"padding:7px 8px;text-align:center;vertical-align:top;\">" + escHtml(scontoStr.isEmpty() ? "—" : scontoStr) + "</td>";
 
-            String descr = nvl(r.getProduct_name());
+            String descr = escHtml(nvl(r.getProduct_name()));
             if (r.getProduct_code() != null && !r.getProduct_code().isBlank()) {
                 descr += " [" + escHtml(r.getProduct_code()) + "]";
-            } else {
-                descr = escHtml(descr);
+            }
+            String productDescription = nvl(r.getDescription()).trim();
+            if (!productDescription.isEmpty()) {
+                descr = "<div>" + descr + "</div>" +
+                    "<div style=\"margin-top:3px;color:#555;line-height:1.35;\">" + escHtml(productDescription) + "</div>";
             }
 
             sb.append("<tr style=\"border-bottom:1px solid #e0e0e0;background:").append(bg).append(";\">");
