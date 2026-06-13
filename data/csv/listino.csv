@@ -1,0 +1,235 @@
+product_code,source_code,product_name,description,unit_measure,category_name,category_sort_order,listino_price,discount_rate,net_price,listino_type,has_listino_override
+010343,010343,Basic INIEZIONE,Boiacca fluida da iniezione a base calce per consolidamento murature CE (EN 998-2),,1. MALTE PRECONFEZIONATE,1,0.44,0.0,0.44,STA,1
+010333,010333,Basic INTONACO,Intonaco a base di calce idraulica naturale (su ordinazione),,1. MALTE PRECONFEZIONATE,1,0.38,0.0,0.38,FST,1
+010340,010340,Basic INTONACO,Intonaco fibrato a base di calce idraulica naturale (su ordinazione),,1. MALTE PRECONFEZIONATE,1,0.38,0.0,0.38,FST,1
+010338,010338,Basic MALTA M15,Malta da muratura a base calce classe M15 per intonaci armati collaboranti,,1. MALTE PRECONFEZIONATE,1,0.38,0.0,0.38,STA,1
+010339,010339,Basic MALTA M15/F,Malta da muratura a base calce classe M15 grana fine per rinforzi strutturali a basso spessore,,1. MALTE PRECONFEZIONATE,1,0.38,0.0,0.38,STA,1
+010341,010341,Basic MALTA M5,Malta per muratura cementizia classe M5 (su ordinazione),,1. MALTE PRECONFEZIONATE,1,0.38,0.0,0.38,FST,1
+010396,010396,Basic MALTA R3,Malta cementizia antiritiro fibrorinforzata CE (R3 – UNI EN 1504-3) (su ordinazione),,1. MALTE PRECONFEZIONATE,1,0.54,0.0,0.54,FST,1
+010010,010010,Betonfix 200,Boiacca idraulica fluida per ancoraggio barre o tiranti d'acciaio,,1. MALTE PRECONFEZIONATE,1,1.24,0.0,1.24,NLIS,1
+010166,010166,Betonfix 200 TH,Boiacca idraulica a consistenza GEL per fissaggio ancoraggi e connettori,,1. MALTE PRECONFEZIONATE,1,1.24,0.0,1.24,NLIS,1
+010006,010006,Betonfix AQM GG,Malta bicomponente idraulica per rasature e regolarizzazioni abbinata a reti Kimitech,,1. MALTE PRECONFEZIONATE,1,1.8,0.0,1.8,STA,1
+010065,010065,Betonfix CR,Malta antiritiro CE (R4 – UNI EN 1504-3) per consolidamento strutturale,,1. MALTE PRECONFEZIONATE,1,0.95,0.0,0.95,STA,1
+010045,010045,Betonfix FB,Malta antiritiro fibrorinforzata tixotropica CE (R4 – UNI EN 1504-3),,1. MALTE PRECONFEZIONATE,1,0.81,0.0,0.81,STA,1
+010065HCEVO,010065HCEVO,Betonfix HCR EVO - Betonfix HCR FORCE,Componente A polvere per sistema Betonfix HCR EVO,,1. MALTE PRECONFEZIONATE,1,1.79,0.0,1.79,STA,1
+010065HCEVOTX,010065HCEVOTX,Betonfix HCR EVO - Betonfix HCR FORCE,Componente A polvere per sistema Betonfix HCR EVO TX (tixotropico),,1. MALTE PRECONFEZIONATE,1,1.79,0.0,1.79,FST,1
+070071EVO,070071EVO,Betonfix HCR EVO - Betonfix HCR FORCE,"Fibre La Gramigna Gold 0,2x13 (Kimitech FMR) – Componente B sistema Betonfix HCR EVO",,1. MALTE PRECONFEZIONATE,1,1.79,0.0,1.79,STA,1
+070072,070072,Betonfix HCR EVO - Betonfix HCR FORCE,Fibre Dramix 3D 80/30 GGP – Componente B sistema Betonfix HCR FORCE,,1. MALTE PRECONFEZIONATE,1,1.79,0.0,1.79,STA,1
+060031,060031,Betonfix KIMIFER,Malta anticorrosiva per protezione ferri di armatura CE (UNI EN 1504-7),,1. MALTE PRECONFEZIONATE,1,6.1,0.0,6.1,STA,1
+010037,010037,Betonfix MONOLITE N,Malta idraulica polimerica tixotropica fibrorinforzata 3 in 1 CE (R4 – EN 1504-3),,1. MALTE PRECONFEZIONATE,1,0.95,0.0,0.95,STA,1
+010068,010068,Betonfix R30 GG,"Malta CE (R1 – EN 1504-3) granulometria max 1,2 mm – Bianco (su ordinazione)",,1. MALTE PRECONFEZIONATE,1,0.96,0.0,0.96,FST,1
+010076,010076,Betonfix R30 GG,"Malta CE (R1 – EN 1504-3) granulometria max 1,2 mm – Grigio (su ordinazione)",,1. MALTE PRECONFEZIONATE,1,0.96,0.0,0.96,FST,1
+012084,012084,Kimistone BIOCIDA,Biocida per eliminazione microflora e muffe – 5 lt,,10. PULITORI/PROTETTIVI PER FACCIATE,2,9.0,0.0,9.0,STA,1
+012085,012085,Kimistone BIOCIDA,Biocida per eliminazione microflora e muffe – 25 lt,,10. PULITORI/PROTETTIVI PER FACCIATE,2,9.0,0.0,9.0,STA,1
+012090,012090,Kimistone IBASIL,Protettivo idrorepellente silossanico a base acquosa – 5 lt (su ordinazione),,10. PULITORI/PROTETTIVI PER FACCIATE,2,12.95,0.0,12.95,FST,1
+012095,012095,Kimistone IBASIL,Protettivo idrorepellente silossanico a base acquosa – 25 lt (su ordinazione),,10. PULITORI/PROTETTIVI PER FACCIATE,2,12.95,0.0,12.95,FST,1
+012080,012080,Kimistone IDROREP,Protettivo idrorepellente silossanico ad alta penetrazione – 25 lt,,10. PULITORI/PROTETTIVI PER FACCIATE,2,13.25,0.0,13.25,STA,1
+012081,012081,Kimistone IDROREP,Protettivo idrorepellente silossanico ad alta penetrazione – 5 lt,,10. PULITORI/PROTETTIVI PER FACCIATE,2,13.25,0.0,13.25,STA,1
+012074,012074,Kimistone K10,Consolidante protettivo a base copolimeri silossanici acrilati in solvente – 5 lt,,10. PULITORI/PROTETTIVI PER FACCIATE,2,16.58,0.0,16.58,STA,1
+012075,012075,Kimistone K10,Consolidante protettivo a base copolimeri silossanici acrilati in solvente – 25 lt,,10. PULITORI/PROTETTIVI PER FACCIATE,2,16.58,0.0,16.58,STA,1
+012069,012069,Kimistone K55,Consolidante protettivo a base esteri etilici e prepolimeri organici – 5 lt (su ordinazione),,10. PULITORI/PROTETTIVI PER FACCIATE,2,41.9,0.0,41.9,FST,1
+012070,012070,Kimistone K55,Consolidante protettivo a base esteri etilici e prepolimeri organici – 25 lt (su ordinazione),,10. PULITORI/PROTETTIVI PER FACCIATE,2,41.9,0.0,41.9,FST,1
+012062,012062,Kimistone KSF,Consolidante forte a base silicato di etile per materiali lapidei silicatici – 5 lt,,10. PULITORI/PROTETTIVI PER FACCIATE,2,36.76,0.0,36.76,STA,1
+012063,012063,Kimistone KSF,Consolidante forte a base silicato di etile per materiali lapidei silicatici – 25 lt,,10. PULITORI/PROTETTIVI PER FACCIATE,2,36.76,0.0,36.76,STA,1
+190198,190198,Kimisteel GLV,Tessuto armatura unidirezionale fibra acciaio galvanizzato 650 g/mq larghezza 30 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,6.93,0.0,6.93,STA,1
+190204,190204,Kimisteel GLV,Tessuto armatura unidirezionale fibra acciaio galvanizzato 650 g/mq larghezza 10 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,6.93,0.0,6.93,STA,1
+180080,180080,Kimisteel IC TASSELLO,Tassello in polipropilene per sistemi di connessione a fiocco – scatola 250 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,1.7,0.0,1.7,STA,1
+190262,190262,Kimisteel INOX X-BAR - barre elicoidali in acciaio inox,Kimisteel INOX X-BAR barra ø 6 mm AISI 304 (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,20.54,0.0,20.54,FST,1
+190291,190291,Kimisteel INOX X-BAR - barre elicoidali in acciaio inox,Kimisteel INOX X-BAR barra ø 12 mm AISI 304,,11. PULTRUSI/TESSUTI DI ARMATURA,3,20.54,0.0,20.54,STA,1
+190292,190292,Kimisteel INOX X-BAR - barre elicoidali in acciaio inox,Kimisteel INOX X-BAR barra ø 10 mm AISI 304,,11. PULTRUSI/TESSUTI DI ARMATURA,3,20.54,0.0,20.54,STA,1
+190293,190293,Kimisteel INOX X-BAR - barre elicoidali in acciaio inox,Kimisteel INOX X-BAR barra ø 8 mm AISI 304,,11. PULTRUSI/TESSUTI DI ARMATURA,3,20.54,0.0,20.54,STA,1
+190294,190294,Kimisteel INOX X-BAR - barre elicoidali in acciaio inox,Kimisteel INOX X-BAR barra ø 12 mm AISI 316,,11. PULTRUSI/TESSUTI DI ARMATURA,3,20.54,0.0,20.54,STA,1
+190295,190295,Kimisteel INOX X-BAR - barre elicoidali in acciaio inox,Kimisteel INOX X-BAR barra ø 10 mm AISI 316,,11. PULTRUSI/TESSUTI DI ARMATURA,3,20.54,0.0,20.54,STA,1
+190296,190296,Kimisteel INOX X-BAR - barre elicoidali in acciaio inox,Kimisteel INOX X-BAR barra ø 8 mm AISI 316,,11. PULTRUSI/TESSUTI DI ARMATURA,3,20.54,0.0,20.54,STA,1
+190303,190303,Kimisteel INOX X-BAR - barre elicoidali in acciaio inox,Kimisteel INOX X-BAR barra ø 6 mm AISI 316 (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,20.54,0.0,20.54,FST,1
+180078,180078,Kimisteel INOX X-CAP,Kimisteel INOX X-CAP sistema fissaggio 8 mm – scatola 250 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.6,0.0,0.6,STA,1
+180079,180079,Kimisteel INOX X-CAP,Kimisteel INOX X-CAP sistema fissaggio 10 mm – scatola 250 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.6,0.0,0.6,STA,1
+180076,180076,Kimisteel INOX X-T,Kimisteel INOX X-T connettore T acciaio AISI 304 – 8 mm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,3.21,0.0,3.21,FST,1
+180077,180077,Kimisteel INOX X-T,Kimisteel INOX X-T connettore T acciaio AISI 304 – 10 mm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,3.21,0.0,3.21,FST,1
+190170,190170,Kimisteel WIRE,Kimisteel WIRE trefolo ø 3 mm – rotolo 250 ml,,11. PULTRUSI/TESSUTI DI ARMATURA,3,1.21,0.0,1.21,STA,1
+190340,190340,Kimisteel WIRE,Kimisteel WIRE trefolo ø 5 mm – rotolo 250 ml (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,1.21,0.0,1.21,FST,1
+190341,190341,Kimisteel WIRE,Kimisteel WIRE cavallotto per trefolo ø 3 mm – scatola 50 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,1.21,0.0,1.21,STA,1
+190342,190342,Kimisteel WIRE,Kimisteel WIRE cavallotto per trefolo ø 5 mm – scatola 50 pz (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,1.21,0.0,1.21,FST,1
+190343,190343,Kimisteel WIRE,Kimisteel WIRE morsetto per trefolo ø 3 mm – scatola 40 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,1.21,0.0,1.21,STA,1
+190344,190344,Kimisteel WIRE,Kimisteel WIRE morsetto per trefolo ø 5 mm – scatola 10 pz (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,1.21,0.0,1.21,FST,1
+190014,190014,Kimitech 350,Rete armatura fibra di vetro 160 g/mq larghezza 100 cm – rotolo 50 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,2.65,0.0,2.65,STA,1
+190250,190250,Kimitech 550 PLUS,Tessuto armatura bidirezionale fibra vetro antialcalino ETA larghezza 100 cm – rotolo 50 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,6.35,0.0,6.35,STA,1
+190239,190239,Kimitech ASF,Tasselli per fissaggio sistemi antisfondellamento – scatola 50 pz testa piatta,,11. PULTRUSI/TESSUTI DI ARMATURA,3,4.38,0.0,4.38,STA,1
+190286,190286,Kimitech BS ST,Rete basalto bidirezionale 200 g/mq larghezza 160 cm – rotolo 25 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,25.71,0.0,25.71,STA,1
+190290,190290,Kimitech BS ST,Rete basalto bidirezionale 400 g/mq larghezza 160 cm – rotolo 25 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,25.71,0.0,25.71,STA,1
+190012,190012,Kimitech CB,Kimitech CB 320 unidirezionale 320 g/mq larghezza 20 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,STA,1
+190013,190013,Kimitech CB,Kimitech CB 320 unidirezionale 320 g/mq larghezza 50 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,STA,1
+190026,190026,Kimitech CB,Kimitech CB 320 unidirezionale 320 g/mq larghezza 10 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,STA,1
+190028,190028,Kimitech CB,Kimitech CB 620 unidirezionale 620 g/mq larghezza 50 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,STA,1
+190030,190030,Kimitech CB,Kimitech CB ST 300 bidirezionale 300 g/mq larghezza 100 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,STA,1
+190034,190034,Kimitech CB,Kimitech CB 620 unidirezionale 620 g/mq larghezza 20 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,STA,1
+190044,190044,Kimitech CB,Kimitech CB 820 unidirezionale 820 g/mq larghezza 10 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,STA,1
+190045,190045,Kimitech CB,Kimitech CB 820 unidirezionale 820 g/mq larghezza 20 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,FST,1
+190047,190047,Kimitech CB,Kimitech CB 620 unidirezionale 620 g/mq larghezza 10 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,FST,1
+190059,190059,Kimitech CB,Kimitech CB 820 unidirezionale 820 g/mq larghezza 50 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,FST,1
+190106,190106,Kimitech CB,Kimitech CB 420 unidirezionale 420 g/mq larghezza 10 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,FST,1
+190109,190109,Kimitech CB,Kimitech CB 380 MTX quadriassiale 380 g/mq larghezza 127 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,STA,1
+190122,190122,Kimitech CB,Kimitech CB 420 unidirezionale 420 g/mq larghezza 20 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,STA,1
+190123,190123,Kimitech CB,Kimitech CB 420 unidirezionale 420 g/mq larghezza 50 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,60.18,0.0,60.18,FST,1
+190131,190131,Kimitech CBA,Kimitech CBA 420 alto modulo unidirezionale 420 g/mq larghezza 20 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,183.6,0.0,183.6,FST,1
+190211,190211,Kimitech CBA,Kimitech CBA 620 alto modulo unidirezionale 600 g/mq larghezza 20 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,183.6,0.0,183.6,FST,1
+190217,190217,Kimitech CBA,Kimitech CBA 320 alto modulo unidirezionale 320 g/mq larghezza 10 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,183.6,0.0,183.6,FST,1
+190218,190218,Kimitech CBA,Kimitech CBA 320 alto modulo unidirezionale 320 g/mq larghezza 20 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,183.6,0.0,183.6,FST,1
+190219,190219,Kimitech CBA,Kimitech CBA 320 alto modulo unidirezionale 320 g/mq larghezza 50 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,183.6,0.0,183.6,FST,1
+190220,190220,Kimitech CBA,Kimitech CBA 620 alto modulo unidirezionale 600 g/mq larghezza 10 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,183.6,0.0,183.6,FST,1
+190221,190221,Kimitech CBA,Kimitech CBA 620 alto modulo unidirezionale 600 g/mq larghezza 50 cm (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,183.6,0.0,183.6,FST,1
+190339,190339,Kimitech CBA,Kimitech Wallmesh CRM RP – scatola 50 pz (su ordinazione),,11. PULTRUSI/TESSUTI DI ARMATURA,3,183.6,0.0,183.6,FST,1
+190042,190042,Kimitech FIOCCO CB,Kimitech FIOCCO CB fiocco carbonio 8 mm – scatola 10 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,5.89,0.0,5.89,STA,1
+190067,190067,Kimitech FIOCCO CB,Kimitech FIOCCO CB fiocco carbonio 10 mm – scatola 10 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,5.89,0.0,5.89,STA,1
+190081,190081,Kimitech FIOCCO CB,Kimitech FIOCCO CB fiocco carbonio 12 mm – scatola 10 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,5.89,0.0,5.89,STA,1
+190061,190061,Kimitech FIOCCO VR,Kimitech FIOCCO VR fiocco vetro 10 mm – scatola 10 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,3.85,0.0,3.85,STA,1
+190117,190117,Kimitech FIOCCO VR,Kimitech FIOCCO VR fiocco vetro 12 mm – scatola 10 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,3.85,0.0,3.85,STA,1
+190032,190032,Kimitech PLATE,"Kimitech PLATE lamina carbonio 50 mm x 1,4 mm – rotolo 50 m",,11. PULTRUSI/TESSUTI DI ARMATURA,3,55.8,0.0,55.8,STA,1
+190097,190097,Kimitech PLATE,"Kimitech PLATE lamina carbonio 100 mm x 1,4 mm – rotolo 50 m",,11. PULTRUSI/TESSUTI DI ARMATURA,3,55.8,0.0,55.8,STA,1
+190304,190304,Kimitech PLUG VR/HD - connettori preformati ad L in fibra di vetro,Kimitech PLUG VR/HD connettore L 200x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,3.98,0.0,3.98,STA,1
+190305,190305,Kimitech PLUG VR/HD - connettori preformati ad L in fibra di vetro,Kimitech PLUG VR/HD connettore L 300x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,3.98,0.0,3.98,STA,1
+190306,190306,Kimitech PLUG VR/HD - connettori preformati ad L in fibra di vetro,Kimitech PLUG VR/HD connettore L 500x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,3.98,0.0,3.98,STA,1
+190307,190307,Kimitech PLUG VR/HD - connettori preformati ad L in fibra di vetro,Kimitech PLUG VR/HD connettore L 700x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,3.98,0.0,3.98,STA,1
+180040,180040,Kimitech TONDO CB,Kimitech TONDO CB barra carbonio ø 10 mm – barre 2 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,48.64,0.0,48.64,STA,1
+180043,180043,Kimitech TONDO CB,Kimitech TONDO CB barra carbonio ø 8 mm – barre 2 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,48.64,0.0,48.64,STA,1
+180044,180044,Kimitech TONDO CB,Kimitech TONDO CB barra carbonio ø 12 mm – barre 2 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,48.64,0.0,48.64,STA,1
+180020,180020,Kimitech TONDO VR,Kimitech TONDO VR barra vetroresina ø 6 mm – barre 2 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,12.21,0.0,12.21,STA,1
+180025,180025,Kimitech TONDO VR,Kimitech TONDO VR barra vetroresina ø 12 mm – barre 2 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,12.21,0.0,12.21,STA,1
+180027,180027,Kimitech TONDO VR,Kimitech TONDO VR barra vetroresina ø 16 mm – barre 2 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,12.21,0.0,12.21,STA,1
+180030,180030,Kimitech TONDO VR,Kimitech TONDO VR barra vetroresina ø 20 mm – barre 2 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,12.21,0.0,12.21,STA,1
+190011,190011,Kimitech VR,Kimitech VR 300 unidirezionale 300 g/mq larghezza 50 cm – rotolo 50 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,15.0,0.0,15.0,STA,1
+190017,190017,Kimitech VR,Kimitech VR 300 unidirezionale 300 g/mq larghezza 20 cm – rotolo 50 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,15.0,0.0,15.0,STA,1
+190314,190314,Kimitech WALLMESH CRM SYSTEM,Kimitech CORNER CRM angolare maglia 33x33 mm – 25x25x100 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.0,0.0,0.0,STA,0
+190315,190315,Kimitech WALLMESH CRM SYSTEM,Kimitech CORNER CRM angolare maglia 66x66 mm – 25x25x100 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.0,0.0,0.0,STA,0
+190322,190322,Kimitech WALLMESH CRM SYSTEM,Kimitech WALLMESH CRM rete 33x33 mm 830 g/mq larghezza 200 cm – rotolo 50 ml,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.0,0.0,0.0,STA,0
+190323,190323,Kimitech WALLMESH CRM SYSTEM,Kimitech WALLMESH CRM rete 66x66 mm 450 g/mq larghezza 200 cm – rotolo 50 ml,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.0,0.0,0.0,STA,0
+190324,190324,Kimitech WALLMESH CRM SYSTEM,Kimitech WALLMESH CRM rete 99x99 mm 310 g/mq larghezza 200 cm – rotolo 50 ml,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.0,0.0,0.0,STA,0
+190333,190333,Kimitech WALLMESH CRM SYSTEM,Kimitech PLUG CRM connettore 200x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.0,0.0,0.0,STA,0
+190334,190334,Kimitech WALLMESH CRM SYSTEM,Kimitech PLUG CRM connettore 300x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.0,0.0,0.0,STA,0
+190335,190335,Kimitech WALLMESH CRM SYSTEM,Kimitech PLUG CRM connettore 500x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.0,0.0,0.0,STA,0
+190336,190336,Kimitech WALLMESH CRM SYSTEM,Kimitech PLUG CRM connettore 700x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,0.0,0.0,0.0,STA,0
+190287,190287,Kimitech WALLMESH HD SYSTEM,Kimitech WALLMESH MR HD rete 38x38 mm 305 g/mq larghezza 100 cm – rotolo 50 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,18.3,0.0,18.3,STA,1
+190288,190288,Kimitech WALLMESH HD SYSTEM,Kimitech WALLMESH CORNER HD angolare – 25x25x100 cm,,11. PULTRUSI/TESSUTI DI ARMATURA,3,18.3,0.0,18.3,STA,1
+190289,190289,Kimitech WALLMESH HD SYSTEM,Kimitech WALLMESH HR/HD rete 38x38 mm 615 g/mq larghezza 100 cm – rotolo 50 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,18.3,0.0,18.3,STA,1
+190253,190253,Kimitech WALLMESH SYSTEM,Kimitech WALLMESH MR rete 50x50 mm 335 g/mq larghezza 100 cm – rotolo 50 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,17.95,0.0,17.95,STA,1
+190254,190254,Kimitech WALLMESH SYSTEM,Kimitech PLUG VR L 20x10 connettore 200x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,17.95,0.0,17.95,STA,1
+190255,190255,Kimitech WALLMESH SYSTEM,Kimitech PLUG VR L 50x10 connettore 500x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,17.95,0.0,17.95,STA,1
+190256,190256,Kimitech WALLMESH SYSTEM,Kimitech PLUG VR L 70x10 connettore 700x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,17.95,0.0,17.95,STA,1
+190258,190258,Kimitech WALLMESH SYSTEM,Kimitech WALLMESH HR rete 35x30 mm 573 g/mq larghezza 100 cm – rotolo 25 m,,11. PULTRUSI/TESSUTI DI ARMATURA,3,17.95,0.0,17.95,STA,1
+190260,190260,Kimitech WALLMESH SYSTEM,Kimitech PLUG VR L 30x10 connettore 300x100 mm – scatola 100 pz,,11. PULTRUSI/TESSUTI DI ARMATURA,3,17.95,0.0,17.95,STA,1
+180061,180061,Mandrino ammortizzato per barre Kimisteel INOX X-BAR,Mandrino ammortizzato per barre ø 8-10 mm (attacco SDS),,11. PULTRUSI/TESSUTI DI ARMATURA,3,319.0,0.0,319.0,STA,1
+180071,180071,Mandrino ammortizzato per barre Kimisteel INOX X-BAR,Mandrino ammortizzato per barre ø 12 mm (attacco SDS),,11. PULTRUSI/TESSUTI DI ARMATURA,3,319.0,0.0,319.0,STA,1
+310025,310025,Kimifill,"Kimifill K9 dry-mix leganti idraulici granulometria 0-0,5 mm (su ordinazione)",,14. PRODOTTI VARI,4,2.1,0.0,2.1,FST,1
+310030,310030,Kimifill,Kimifill MP granulometria 1-2 mm,,14. PRODOTTI VARI,4,2.1,0.0,2.1,STA,1
+310035,310035,Kimifill,"Kimifill 1F granulometria 0,4-0,8 mm",,14. PRODOTTI VARI,4,2.1,0.0,2.1,STA,1
+310036,310036,Kimifill,"Kimifill 01-03 granulometria 0,1-0,3 mm",,14. PRODOTTI VARI,4,2.1,0.0,2.1,STA,1
+310039,310039,Kimifill,Kimifill K12 dry-mix leganti idraulici per sistema epossicementizio spatolabile,,14. PRODOTTI VARI,4,2.1,0.0,2.1,STA,1
+310041,310041,Kimifill,Kimifill K14 Bianco dry-mix leganti idraulici per sistema epossicementizio autolivellante (su ordinazione),,14. PRODOTTI VARI,4,2.1,0.0,2.1,FST,1
+310090,310090,Kimifill,Kimifill HM granulometria 0-2 mm,,14. PRODOTTI VARI,4,2.1,0.0,2.1,STA,1
+310095,310095,Kimifill,Kimifill 3-6 granulometria 3-6 mm,,14. PRODOTTI VARI,4,2.1,0.0,2.1,STA,1
+310111,310111,Kimifill,Kimifill K14 Grigio chiaro dry-mix leganti idraulici per sistema epossicementizio autolivellante (su ordinazione),,14. PRODOTTI VARI,4,2.1,0.0,2.1,FST,1
+040001,040001,Kimitech ACR,Resina monocomponente acrilica come promotore adesione per verniciature acriliche – 5 kg,,14. PRODOTTI VARI,4,4.13,0.0,4.13,STA,1
+040002,040002,Kimitech ACR,Resina monocomponente acrilica come promotore adesione per verniciature acriliche – 25 kg,,14. PRODOTTI VARI,4,4.13,0.0,4.13,STA,1
+010164,010164,Kimitech AD,Resina sintetica da miscolare con malte Betonfix per malte bicomponenti espansive – 5 kg (su ordinazione),,14. PRODOTTI VARI,4,22.11,0.0,22.11,FST,1
+010165,010165,Kimitech AD,Resina sintetica da miscolare con malte Betonfix per malte bicomponenti espansive – 25 kg (su ordinazione),,14. PRODOTTI VARI,4,22.11,0.0,22.11,FST,1
+070058,070058,Kimitech ANTITARLO,Impregnante atossico acquoso biocida per protezione del legno – 5 kg,,14. PRODOTTI VARI,4,18.56,0.0,18.56,STA,1
+070059,070059,Kimitech ANTITARLO,Impregnante atossico acquoso biocida per protezione del legno – 25 kg,,14. PRODOTTI VARI,4,18.56,0.0,18.56,STA,1
+010162,010162,Kimitech BC,Kimitech BC resina sintetica per malte bicomponenti adesive – 5 kg (su ordinazione),,14. PRODOTTI VARI,4,3.14,0.0,3.14,FST,1
+010163,010163,Kimitech BC,Resina sintetica da miscolare con malte Betonfix per malte bicomponenti adesive – 25 kg,,14. PRODOTTI VARI,4,3.14,0.0,3.14,STA,1
+020100,020100,Kimitech ELASTOFIX,Resina flessibilizzante monocomponente per impasti cementizi impermeabili e flessibili – 5 kg,,14. PRODOTTI VARI,4,5.99,0.0,5.99,STA,1
+020105,020105,Kimitech ELASTOFIX,Resina flessibilizzante monocomponente per impasti cementizi impermeabili e flessibili – 25 kg,,14. PRODOTTI VARI,4,5.99,0.0,5.99,STA,1
+020005,020005,Kimitech EP-RG,Resina monocomponente per riprese di getto e additivo malte – 1 kg,,14. PRODOTTI VARI,4,6.44,0.0,6.44,STA,1
+020010,020010,Kimitech EP-RG,Resina monocomponente per riprese di getto e additivo malte – 5 kg,,14. PRODOTTI VARI,4,6.44,0.0,6.44,STA,1
+020015,020015,Kimitech EP-RG,Resina monocomponente per riprese di getto e additivo malte – 25 kg,,14. PRODOTTI VARI,4,6.44,0.0,6.44,STA,1
+020020,020020,Kimitech EP-RG,Resina monocomponente per riprese di getto – fusto 208 kg (su ordinazione),,14. PRODOTTI VARI,4,6.44,0.0,6.44,FST,1
+020022,020022,Kimitech EP-RG,Resina monocomponente per riprese di getto – cisterna 1.000 kg (su ordinazione),,14. PRODOTTI VARI,4,6.44,0.0,6.44,FST,1
+010536,010536,Tectoria AFFRESCO,Miscela pura calce idraulica naturale per incollaggi intonaci affrescati distaccati,,2. PRODOTTI PER L'EDILIZIA SOSTENIBILE,5,4.13,0.0,4.13,STA,1
+010537,010537,Tectoria FINITURA,Malta pura calce idraulica naturale per rasature esterne e interne CE (GP),,2. PRODOTTI PER L'EDILIZIA SOSTENIBILE,5,0.9,0.0,0.9,STA,1
+010538,010538,Tectoria INTONACO NHL,Malta calce idraulica naturale per intonaci e opere murarie CE (GP CS III / M5),,2. PRODOTTI PER L'EDILIZIA SOSTENIBILE,5,0.69,0.0,0.69,STA,1
+010535,010535,Tectoria STRUTTURA,Boiacca calce idraulica naturale per iniezioni di consolidamento murature CE (EN 998-2),,2. PRODOTTI PER L'EDILIZIA SOSTENIBILE,5,1.16,0.0,1.16,STA,1
+010168N,010168N,Limepor 100,Miscela da iniezione per preconsolidare murature a sacco CE (EN 998-2) (su ordinazione),,3. CALCI IDRAULICHE POZZOLANICHE,6,0.99,0.0,0.99,FST,1
+010101,010101,Limepor 100 GEL,Miscela da iniezione a consistenza gel per rigenerare murature a sacco CE (EN 998-2),,3. CALCI IDRAULICHE POZZOLANICHE,6,0.97,0.0,0.97,STA,1
+010412,010412,Limepor COCCIOFORTE,Sistema rinforzo strutturale tricomponente cocciopesto – aggregato cocciopesto / legante,,3. CALCI IDRAULICHE POZZOLANICHE,6,31.25,0.0,31.25,STA,1
+010413,010413,Limepor COCCIOFORTE,Sistema rinforzo strutturale tricomponente cocciopesto – aggregato avorio,,3. CALCI IDRAULICHE POZZOLANICHE,6,31.25,0.0,31.25,STA,1
+010414,010414,Limepor COCCIOFORTE,Limepor COCCIOFORTE – Componente A legante (conf. grande),,3. CALCI IDRAULICHE POZZOLANICHE,6,31.25,0.0,31.25,STA,1
+010126,010126,Limepor EDO,"Tonachino protettivo per superfici interne ed esterne granulometria max 0,6 mm",,3. CALCI IDRAULICHE POZZOLANICHE,6,0.82,0.0,0.82,STA,1
+010123,010123,Limepor LGS,"Prodotto da miscolare con inerti per intonaci, massetti, malte da muratura",,3. CALCI IDRAULICHE POZZOLANICHE,6,0.73,0.0,0.73,STA,1
+010531,010531,Limepor MONO,Malta a base calce idraulica naturale per intonaci deumidificanti macroporosi,,3. CALCI IDRAULICHE POZZOLANICHE,6,0.93,0.0,0.93,STA,1
+010395,010395,Limepor PMP,Malta pronta all'uso per intonaci granulometria max 3 mm CE (GP CS IV),,3. CALCI IDRAULICHE POZZOLANICHE,6,0.65,0.0,0.65,STA,1
+010404,010404,Limepor PMP,Limepor PMP CIVITAS,,3. CALCI IDRAULICHE POZZOLANICHE,6,0.65,0.0,0.65,STA,1
+010405,010405,Limepor PMP,Limepor PMP 100 (su ordinazione),,3. CALCI IDRAULICHE POZZOLANICHE,6,0.65,0.0,0.65,FST,1
+010406,010406,Limepor PMP,Limepor PMP 101 (su ordinazione),,3. CALCI IDRAULICHE POZZOLANICHE,6,0.65,0.0,0.65,FST,1
+010407,010407,Limepor PMP,Limepor PMP 102 (su ordinazione),,3. CALCI IDRAULICHE POZZOLANICHE,6,0.65,0.0,0.65,FST,1
+010408,010408,Limepor PMP,Limepor PMP 105 (su ordinazione),,3. CALCI IDRAULICHE POZZOLANICHE,6,0.65,0.0,0.65,FST,1
+010409,010409,Limepor PMP,Limepor PMP 110 (su ordinazione),,3. CALCI IDRAULICHE POZZOLANICHE,6,0.65,0.0,0.65,FST,1
+010411,010411,Limepor PMP,Limepor PMP CIVITAS/F (su ordinazione),,3. CALCI IDRAULICHE POZZOLANICHE,6,0.65,0.0,0.65,FST,1
+010532,010532,Limepor RZ,Malta a base calce idraulica naturale per rinzaffi desalinizzati,,3. CALCI IDRAULICHE POZZOLANICHE,6,1.31,0.0,1.31,STA,1
+010135,010135,Limepor SK,Stucco per superfici interne ed esterne,,3. CALCI IDRAULICHE POZZOLANICHE,6,0.99,0.0,0.99,STA,1
+010533,010533,Limepor TREVI,Malta a base calce idraulica naturale per impermeabilizzazioni superfici esterne (su ordinazione),,3. CALCI IDRAULICHE POZZOLANICHE,6,1.59,0.0,1.59,FST,1
+020061,020061,Kimitech CMP,"Resina epossidica bicomponente per incollaggio e impregnazione sistemi FRP – 5,33 kg",,4. ADESIVI STRUTTURALI,7,33.9,0.0,33.9,STA,1
+020062,020062,Kimitech CMP,Resina epossidica bicomponente per incollaggio e impregnazione sistemi FRP – 16 kg,,4. ADESIVI STRUTTURALI,7,33.9,0.0,33.9,STA,1
+020035,020035,Kimitech EP-IN,Adesivo epossidico fluido bicomponente per incollaggi strutturali a iniezione – 6 kg,,4. ADESIVI STRUTTURALI,7,33.98,0.0,33.98,STA,1
+020037,020037,Kimitech EP-IN,Resina epossidica fluida bicomponente bassa viscosità per incollaggi strutturali – 25 kg (su ordinazione),,4. ADESIVI STRUTTURALI,7,33.98,0.0,33.98,FST,1
+020040,020040,Kimitech EP-IN,Adesivo epossidico fluido bicomponente per incollaggi strutturali a iniezione – 18 kg,,4. ADESIVI STRUTTURALI,7,33.98,0.0,33.98,STA,1
+020024,020024,Kimitech EP-IS,Resina epossidica liquida bicomponente media viscosità per incollaggi strutturali – 6 kg (su ordinazione),,4. ADESIVI STRUTTURALI,7,22.8,0.0,22.8,FST,1
+020025,020025,Kimitech EP-IS,Resina epossidica liquida bicomponente media viscosità per incollaggi strutturali – 24 kg (su ordinazione),,4. ADESIVI STRUTTURALI,7,22.8,0.0,22.8,FST,1
+020044,020044,Kimitech EP-TX,Adesivo epossidico tixotropico bicomponente per incollaggi strutturali – 10 kg,,4. ADESIVI STRUTTURALI,7,17.2,0.0,17.2,STA,1
+020045,020045,Kimitech EP-TX,Adesivo epossidico tixotropico bicomponente per incollaggi strutturali – 20 kg,,4. ADESIVI STRUTTURALI,7,17.2,0.0,17.2,STA,1
+020049,020049,Kimitech EP-TX,Adesivo epossidico bicomponente esente solventi per incollaggi strutturali – 10 kg (su ordinazione),,4. ADESIVI STRUTTURALI,7,17.2,0.0,17.2,FST,1
+020050,020050,Kimitech EP-TX,Adesivo epossidico bicomponente esente solventi per incollaggi strutturali – 20 kg (su ordinazione),,4. ADESIVI STRUTTURALI,7,17.2,0.0,17.2,FST,1
+040612,040612,Kimitech EPOXY CTR,Resina epossidica bicomponente in cartuccia CE per ancoraggi strutturali – 585 ml,,4. ADESIVI STRUTTURALI,7,38.5,0.0,38.5,STA,1
+040511,040511,Kimitech VINYL CTR,Cartuccia resina vinilestere CE/ETA per ancoraggi e incollaggi strutturali – 400 ml,,4. ADESIVI STRUTTURALI,7,21.43,0.0,21.43,STA,1
+050242,050242,Kimicover 301 NF,Resina poliuretanica bicomponente protettiva/verniciatura – Trasparente,,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,STA,1
+050243,050243,Kimicover 301 NF,Resina poliuretanica bicomponente protettiva/verniciatura – Grigio 7035,,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,STA,1
+050244,050244,Kimicover 301 NF,Resina poliuretanica bicomponente protettiva/verniciatura – Grigio 7032,,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,STA,1
+050245,050245,Kimicover 301 NF,Kimicover 301 NF – Componente A Rosso – 4 kg (su ordinazione),,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,FST,1
+050246,050246,Kimicover 301 NF,Resina poliuretanica bicomponente protettiva/verniciatura – Bianco 9003,,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,STA,1
+050247,050247,Kimicover 301 NF,Resina poliuretanica bicomponente protettiva/verniciatura – Neutro,,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,STA,1
+050263,050263,Kimicover 301 NF,Kimicover 301 NF – Componente B Catalizzatore 1 kg,,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,STA,1
+050266,050266,Kimicover 301 NF,Kimicover 301 NF – Componente B Catalizzatore conf. grande 5 kg,,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,STA,1
+050278,050278,Kimicover 301 NF,Kimicover 301 NF – Componente A Neutro conf. grande 20 kg,,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,STA,1
+050288,050288,Kimicover 301 NF,Kimicover 301 NF – Componente A Grigio 7035 – 20 kg (su ordinazione),,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,FST,1
+050331,050331,Kimicover 301 NF,Kimicover 301 NF – Componente A Grigio 7032 – 20 kg (su ordinazione),,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,FST,1
+301NF201,301NF201,Kimicover 301 NF,Kimicover 301 NF – Componente A colori RAL Fascia 1 – 20 kg (su ordinazione),,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,FST,1
+301NF202,301NF202,Kimicover 301 NF,Kimicover 301 NF – Componente A colori RAL Fascia 2 – 20 kg (su ordinazione),,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,FST,1
+301NF203,301NF203,Kimicover 301 NF,Kimicover 301 NF – Componente A colori RAL Fascia 3 – 20 kg (su ordinazione),,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,FST,1
+301NF41,301NF41,Kimicover 301 NF,Kimicover 301 NF – Componente A colori RAL Fascia 1 – 4 kg (su ordinazione),,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,FST,1
+301NF42,301NF42,Kimicover 301 NF,Kimicover 301 NF – Componente A colori RAL Fascia 2 – 4 kg (su ordinazione),,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,FST,1
+301NF43,301NF43,Kimicover 301 NF,Kimicover 301 NF – Componente A colori RAL Fascia 3 – 4 kg (su ordinazione),,5. IMPERMEABILIZZANTI,8,25.58,0.0,25.58,FST,1
+040093,040093,Kimicover BLINDO,Resina acrilica elastica CE (UNI EN 1504-2) per protezione c.a. – Rosso,,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,STA,1
+040095,040095,Kimicover BLINDO,Resina acrilica elastica CE (UNI EN 1504-2) per protezione c.a. – Bianco 9003,,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,STA,1
+040103,040103,Kimicover BLINDO,Resina acrilica elastica CE (UNI EN 1504-2) per protezione c.a. – Grigio 7032,,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,STA,1
+040158,040158,Kimicover BLINDO,Resina acrilica elastica CE (UNI EN 1504-2) per protezione c.a. – Neutro,,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,STA,1
+050254,050254,Kimicover BLINDO,Resina acrilica elastica CE (UNI EN 1504-2) per protezione c.a. – Grigio 7035,,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,STA,1
+050255,050255,Kimicover BLINDO,Resina acrilica elastica CE (UNI EN 1504-2) per protezione c.a. – Verde 6011,,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,STA,1
+050256,050256,Kimicover BLINDO,Kimicover BLINDO – Grigio 7032 cisterne 1.100 kg (su ordinazione),,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,FST,1
+BLI251,BLI251,Kimicover BLINDO,Kimicover BLINDO – Fascia colori RAL 1 (25 kg) (su ordinazione),,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,FST,1
+BLI252,BLI252,Kimicover BLINDO,Kimicover BLINDO – Fascia colori RAL 2 (25 kg) (su ordinazione),,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,FST,1
+BLI253,BLI253,Kimicover BLINDO,Kimicover BLINDO – Fascia colori RAL 3 (25 kg) (su ordinazione),,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,FST,1
+BLI254,BLI254,Kimicover BLINDO,Kimicover BLINDO – Fascia colori RAL 4 (25 kg) (su ordinazione),,5. IMPERMEABILIZZANTI,8,7.1,0.0,7.1,FST,1
+040090,040090,Kimicover FIX,Resina bicomponente esente solventi per consolidare superfici friabili – 6 kg,,5. IMPERMEABILIZZANTI,8,15.98,0.0,15.98,STA,1
+040091,040091,Kimicover FIX,Resina bicomponente esente solventi per consolidare superfici friabili – 18 kg,,5. IMPERMEABILIZZANTI,8,15.98,0.0,15.98,STA,1
+050170,050170,Kimicover IN,Resina sintetica monocomponente per barraggio chimico contro umidità di risalita – 5 kg,,5. IMPERMEABILIZZANTI,8,10.75,0.0,10.75,STA,1
+050175,050175,Kimicover IN,Resina sintetica monocomponente per barraggio chimico contro umidità di risalita – 25 kg,,5. IMPERMEABILIZZANTI,8,10.75,0.0,10.75,STA,1
+050006,050006,Kimitech EC,Resina epossidica bicomponente da miscolare con aggregati Kimifill per sistemi epossicementizi,,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,21.75,0.0,21.75,STA,1
+040364,040364,Kimitech K40 AP,Kimitech K40 AP a base acqua – Componente A/B Bianco (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,17.25,0.0,17.25,FST,1
+040365,040365,Kimitech K40 AP,Kimitech K40 AP a base solvente – Componente A/B Giallo (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,17.25,0.0,17.25,FST,1
+040371,040371,Kimitech K40 AP,Kimitech K40 AP a base acqua – conf. grande Componente A/B Bianco (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,17.25,0.0,17.25,FST,1
+040261,040261,Kimitech K40 NF,Kimitech K40 NF – Componente B Base bianca colorabile conf. grande 20 kg,,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,STA,1
+040263,040263,Kimitech K40 NF,Kimitech K40 NF – Componente B Neutro conf. grande 20 kg,,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,STA,1
+050248,050248,Kimitech K40 NF,Kimitech K40 NF – Componente B Grigio 7035 4 kg,,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,STA,1
+050249,050249,Kimitech K40 NF,Kimitech K40 NF – Componente B Grigio 7035 conf. grande 20 kg (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,FST,1
+050250,050250,Kimitech K40 NF,Kimitech K40 NF – Componente B Bianco 9010 4 kg,,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,STA,1
+050251,050251,Kimitech K40 NF,Kimitech K40 NF – Componente B Bianco 9010 conf. grande 20 kg (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,FST,1
+050252,050252,Kimitech K40 NF,Kimitech K40 NF – Componente B Base bianca colorabile 4 kg,,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,STA,1
+050253,050253,Kimitech K40 NF,Kimitech K40 NF – Componente B Neutro 4 kg,,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,STA,1
+050264,050264,Kimitech K40 NF,Kimitech K40 NF – Componente A Resina 1 kg,,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,STA,1
+050267,050267,Kimitech K40 NF,Kimitech K40 NF – Componente A Resina conf. grande 5 kg,,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,STA,1
+K40NF201,K40NF201,Kimitech K40 NF,Kimitech K40 NF – Componente B colori RAL Fascia 1 – 20 kg (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,FST,1
+K40NF202,K40NF202,Kimitech K40 NF,Kimitech K40 NF – Componente B colori RAL Fascia 2 – 20 kg (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,FST,1
+K40NF203,K40NF203,Kimitech K40 NF,Kimitech K40 NF – Componente B colori RAL Fascia 3 – 20 kg (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,FST,1
+K40NF204,K40NF204,Kimitech K40 NF,Kimitech K40 NF – Componente B colori RAL Fascia 4 – 20 kg (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,FST,1
+K40NF41,K40NF41,Kimitech K40 NF,Kimitech K40 NF – Componente B colori RAL Fascia 1 – 4 kg (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,FST,1
+K40NF42,K40NF42,Kimitech K40 NF,Kimitech K40 NF – Componente B colori RAL Fascia 2 – 4 kg (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,FST,1
+K40NF43,K40NF43,Kimitech K40 NF,Kimitech K40 NF – Componente B colori RAL Fascia 3 – 4 kg (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,FST,1
+K40NF44,K40NF44,Kimitech K40 NF,Kimitech K40 NF – Componente B colori RAL Fascia 4 – 4 kg (su ordinazione),,6. PAVIMENTI E RIVESTIMENTI IN RESINA,9,18.78,0.0,18.78,FST,1
