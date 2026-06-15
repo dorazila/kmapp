@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 340" role="img" aria-labelledby="title">
+  <title id="title">Kimia logo</title>
+  <defs>
+    <clipPath id="shape">
+      <circle cx="205" cy="170" r="138" />
+      <circle cx="335" cy="170" r="138" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#shape)">
+    <rect x="0" y="0" width="270" height="340" fill="#174588" />
+    <rect x="270" y="0" width="270" height="340" fill="#78A6D0" />
+
+    <path
+      d="M 356 60 C 306 60 278 98 252 132 C 227 165 205 193 170 193 C 124 193 94 161 94 118 C 94 90 107 66 126 52"
+      fill="none"
+      stroke="#FFFFFF"
+      stroke-width="18"
+      stroke-linecap="round"
+      stroke-linejoin="round" />
+    <path
+      d="M 184 280 C 231 280 260 242 286 207 C 311 174 333 146 368 146 C 414 146 444 178 444 221 C 444 249 431 273 412 287"
+      fill="none"
+      stroke="#FFFFFF"
+      stroke-width="18"
+      stroke-linecap="round"
+      stroke-linejoin="round" />
+  </g>
+</svg>

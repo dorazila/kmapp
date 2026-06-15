@@ -24,8 +24,8 @@ public class CartItem {
         this.unit_measure  = p.getUnitMeasure();
         this.net_price     = p.getNetPrice();
         this.listino_price = p.getListinoPrice();
-        this.qty           = null;
-        this.sconto        = null;
+        this.qty           = 100.0;
+        this.sconto        = 0.50;
     }
 
     /** Effective price after discount */

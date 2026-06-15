@@ -30,9 +30,9 @@ public final class HtmlBuilder {
             "<th style=\"padding:7px 8px;text-align:center;font-weight:700;\">Sconto applicato</th>";
 
         String page1 = """
-            <div class="offerta-doc" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#111;background:#fff;max-width:860px;margin:0 auto;">
+            <div class="offerta-doc" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#111;background:#fff;">
             """ + headerHtml + introHtml + """
-              <div style="padding:8px 32px 20px;">
+              <div style="padding:8px 20px 14px;">
                 <table style="width:100%;border-collapse:collapse;font-size:11px;">
                   <thead>
                     <tr style="background:#1A3A6B;color:#fff;">
@@ -50,7 +50,7 @@ public final class HtmlBuilder {
                   Importo totale: """ + fmtE(total) + """
                 </div>
               </div>
-              <div style="padding:0 32px 10px;">
+              <div style="padding:0 20px 10px;">
                 <table style="width:100%;border-collapse:collapse;"><tr>
                   <td style="vertical-align:bottom;font-size:11.5px;">
                     <div><strong>L&rsquo;impresa per accettazione</strong></div>
@@ -69,9 +69,9 @@ public final class HtmlBuilder {
             """ + footerHtml + "</div>";
 
         String page2 = """
-            <div class="offerta-doc" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#111;background:#fff;max-width:860px;margin:16px auto 0;page-break-before:always;">
+            <div class="offerta-doc" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#111;background:#fff;page-break-before:always;">
             """ + headerHtml + introHtml + """
-              <div style="padding:8px 32px 16px;">
+              <div style="padding:8px 20px 16px;">
                 <div style="font-size:12px;font-weight:700;text-transform:uppercase;color:#111;margin-bottom:10px;text-align:center;border-bottom:1px solid #ccc;padding-bottom:6px;">Condizioni di Fornitura</div>
                 <div style="font-size:11.5px;line-height:1.8;">
                   <div><strong>Pagamento</strong>: da concordare</div>
@@ -91,9 +91,9 @@ public final class HtmlBuilder {
               </div>
             """ +
             (note != null && !note.isBlank() ?
-                "<div style=\"padding:0 32px 16px;font-size:11.5px;color:#111;\"><div style=\"margin-top:8px;white-space:pre-wrap;\"><strong>Note:</strong> " + escHtml(note) + "</div></div>" : "") +
+                "<div style=\"padding:0 20px 16px;font-size:11.5px;color:#111;\"><div style=\"margin-top:8px;white-space:pre-wrap;\"><strong>Note:</strong> " + escHtml(note) + "</div></div>" : "") +
             """
-              <div style="padding:0 32px 16px;font-size:11.5px;">
+              <div style="padding:0 20px 16px;font-size:11.5px;">
                 <div><strong>Prezzi da intendersi IVA e trasporto esclusi</strong></div>
                 <div style="margin-top:8px;color:#1A3A6B;text-decoration:underline;">Le schede tecniche e le Dop sono scaricabili dal sito www.kimia.it</div>
                 <div style="margin-top:12px;">Nel rimanere a disposizione per qualsiasi altra informazione, porgiamo cordiali saluti.</div>
@@ -145,7 +145,7 @@ public final class HtmlBuilder {
 
     private static String buildHeader(String agente, String tel, String email) {
         return """
-            <div style="padding:20px 32px 16px;border-bottom:1px solid #ddd;display:flex;align-items:flex-start;justify-content:space-between;">
+            <div style="padding:14px 20px 12px;border-bottom:1px solid #dbe2ea;display:flex;align-items:flex-start;justify-content:space-between;">
               <div style="flex:0 0 auto;">
                 <span style="font-family:'Arial Black','Segoe UI',Arial,sans-serif;font-size:25.6px;line-height:1;font-weight:800;letter-spacing:.01em;color:#1A3A6B;">KIMIA</span>
               </div>
@@ -167,13 +167,13 @@ public final class HtmlBuilder {
 
     private static String buildFooter(String agente, String tel, String email) {
         return """
-            <div style="border-top:3px solid #1A3A6B;padding:10px 32px;display:flex;justify-content:space-between;font-size:10px;color:#333;background:#fff;">
-              <div><strong>Kimia S.p.A.</strong><br>Via del Rame, 73<br>06134 Perugia (Italia)</div>
-              <div><strong>Website:</strong><br><span style="color:#1D9E75;">www.kimia.it</span></div>
+            <div style="border-top:2px solid #1A3A6B;padding:10px 20px;display:flex;justify-content:space-between;font-size:10px;color:#333;background:#fff;">
+              <div><strong>Kimia S.p.A.</strong><br />Via del Rame, 73<br />06134 Perugia (Italia)</div>
+              <div><strong>Website:</strong><br /><span style="color:#1D9E75;">www.kimia.it</span></div>
               <div><strong>""" + escHtml(nvl(agente)) + """
-              </strong><br>General Sales Manager &ndash; Italia - Export</div>
+              </strong><br />General Sales Manager &ndash; Italia - Export</div>
               <div><strong>Tel.</strong> """ + escHtml(nvl(tel)) + """
-              <br><strong>E-mail:</strong> """ + escHtml(nvl(email)) + """
+              <br /><strong>E-mail:</strong> """ + escHtml(nvl(email)) + """
               </div>
             </div>""";
     }
@@ -182,7 +182,7 @@ public final class HtmlBuilder {
         String oggetto = "Offerta N. " + escHtml(nvl(num).isEmpty() ? "—" : num);
         if (cantiere != null && !cantiere.isBlank()) oggetto += " - " + escHtml(cantiere);
         return """
-            <div style="padding:20px 32px 0;">
+            <div style="padding:16px 20px 0;">
               <table style="width:100%;border-collapse:collapse;"><tr>
                 <td style="vertical-align:top;"></td>
                 <td style="text-align:right;vertical-align:top;font-size:11.5px;line-height:1.7;">
@@ -191,11 +191,11 @@ public final class HtmlBuilder {
                 </td>
               </tr></table>
             </div>
-            <div style="padding:10px 32px 16px;font-size:11.5px;">
+            <div style="padding:10px 20px 12px;font-size:11.5px;">
               <div>""" + escHtml(nvl(today)) + """
               </div>
             </div>
-            <div style="padding:0 32px 12px;">
+            <div style="padding:0 20px 10px;">
               <div style="font-size:11.5px;"><strong>OGGETTO:</strong> """ + oggetto + """
               </div>
             </div>""";
@@ -203,17 +203,50 @@ public final class HtmlBuilder {
 
     private static String wrapPage(String body) {
         return """
-            <!DOCTYPE html>
-            <html lang="it">
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+            <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it">
             <head>
-            <meta charset="UTF-8">
+            <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
             <style>
-              body { margin:0; background:#f5f5f5; }
-              .offerta-doc { box-shadow: 0 2px 8px rgba(0,0,0,0.12); margin-bottom: 16px; }
+              @page {
+                size: A4;
+                margin: 10mm;
+              }
+              html, body {
+                margin: 0;
+                padding: 0;
+                background: #eef2f6;
+                color: #111;
+                font-family: Arial, Helvetica, sans-serif;
+              }
+              .offerta-doc {
+                background: #fff;
+                margin: 0 0 10px;
+                box-shadow: 0 1px 6px rgba(15, 23, 42, 0.10);
+              }
+              .offerta-doc + .offerta-doc {
+                page-break-before: always;
+              }
+              table {
+                page-break-inside: auto;
+              }
+              tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+              }
+              thead {
+                display: table-header-group;
+              }
               @media print {
-                body { background:#fff; }
-                .offerta-doc { box-shadow:none; }
-                .offerta-doc + .offerta-doc { page-break-before:always; }
+                html, body {
+                  background: #fff;
+                }
+                .offerta-doc {
+                  margin: 0;
+                  box-shadow: none;
+                }
               }
             </style>
             </head>

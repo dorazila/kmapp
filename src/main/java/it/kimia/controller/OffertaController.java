@@ -4,8 +4,13 @@ import it.kimia.model.SavedOfferta;
 import it.kimia.service.AuthService;
 import it.kimia.service.CartService;
 import it.kimia.service.OffertaService;
+import it.kimia.service.PdfService;
 import it.kimia.service.TrasportoService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +25,8 @@ public class OffertaController {
     private final CartService cart;
     private final TrasportoService trasporto;
     private final AuthService auth;
-    public OffertaController(OffertaService offerte, CartService cart, TrasportoService trasporto, AuthService auth) { this.offerte=offerte; this.cart=cart; this.trasporto=trasporto; this.auth=auth; }
+    private final PdfService pdf;
+    public OffertaController(OffertaService offerte, CartService cart, TrasportoService trasporto, AuthService auth, PdfService pdf) { this.offerte=offerte; this.cart=cart; this.trasporto=trasporto; this.auth=auth; this.pdf=pdf; }
 
     @GetMapping public String form(Model model) throws Exception {
         model.addAttribute("regions", trasporto.regioni());
@@ -41,8 +47,28 @@ public class OffertaController {
         ra.addFlashAttribute("message", "Offerta salvata correttamente.");
         return "redirect:/offerta/storico";
     }
+    @PostMapping(value = "/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
+    @ResponseBody
+    public ResponseEntity<byte[]> pdf(@ModelAttribute OffertaService.OffertaForm form) throws Exception {
+        OffertaService.OffertaForm normalized = normalizeTrasporto(form);
+        String html = offerte.previewHtml(normalized);
+        byte[] pdfBytes = pdf.renderHtml(html);
+
+        String numero = isBlank(normalized.numero()) ? "offerta" : normalized.numero().replaceAll("[^a-zA-Z0-9._-]", "_");
+        String fileName = "offerta-" + numero + ".pdf";
+
+        return ResponseEntity.ok()
+            .contentType(MediaType.APPLICATION_PDF)
+            .header(HttpHeaders.CONTENT_DISPOSITION, ContentDisposition.inline().filename(fileName).build().toString())
+            .body(pdfBytes);
+    }
+    @GetMapping("/pdf")
+    public String pdfGetFallback(RedirectAttributes ra) {
+        ra.addFlashAttribute("message", "Apri il PDF dalla pagina di anteprima offerta.");
+        return "redirect:/offerta";
+    }
     @GetMapping("/storico") public String storico(Model model, HttpSession session) throws Exception { model.addAttribute("offerte", offerte.all(currentUser(session))); return "offerte-storico"; }
-    @GetMapping("/{id}") public String open(@PathVariable int id, Model model, HttpSession session) throws Exception {
+    @GetMapping("/{id:\\d+}") public String open(@PathVariable int id, Model model, HttpSession session) throws Exception {
         SavedOfferta o = offerte.find(id, currentUser(session)).orElseThrow();
         offerte.loadIntoCart(o);
         OffertaService.OffertaForm form = new OffertaService.OffertaForm(o.getNumero(), o.getDataOfferta(), o.getCliente(), o.getCantiere(), o.getRegione() != null ? o.getRegione() : "Umbria", String.valueOf(o.getScadenzaGg()), o.getAgente(), o.getEmail(), o.getTel(), o.getNote(), o.getTrasporto(), false);
@@ -51,8 +77,8 @@ public class OffertaController {
         model.addAttribute("cartTotal", cart.total());
         return "offerta-preview";
     }
-    @PostMapping("/delete/{id}") public String delete(@PathVariable int id, HttpSession session) throws Exception { offerte.delete(id, currentUser(session)); return "redirect:/offerta/storico"; }
-    @GetMapping("/{id}/html") @ResponseBody public String html(@PathVariable int id, HttpSession session) throws Exception {
+    @PostMapping("/delete/{id:\\d+}") public String delete(@PathVariable int id, HttpSession session) throws Exception { offerte.delete(id, currentUser(session)); return "redirect:/offerta/storico"; }
+    @GetMapping("/{id:\\d+}/html") @ResponseBody public String html(@PathVariable int id, HttpSession session) throws Exception {
         SavedOfferta o = offerte.find(id, currentUser(session)).orElseThrow();
         return o.getItemsJson();
     }
