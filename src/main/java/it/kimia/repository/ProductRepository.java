@@ -88,8 +88,21 @@ public class ProductRepository {
     private Product map(ResultSet rs) throws SQLException {
         Product p = new Product(rs.getString("product_code"), rs.getString("product_name"), rs.getString("description"), rs.getString("unit_measure"), rs.getString("category_name"), rs.getDouble("listino_price"), rs.getDouble("discount_rate"), rs.getDouble("net_price"));
         p.setListinoType(rs.getString("listino_type"));
-        Object suggestedQty = rs.getObject("suggested_qty");
-        p.setSuggestedQty(suggestedQty != null ? rs.getDouble("suggested_qty") : null);
+        // findByCode() does not project suggested_qty, so read it only when present.
+        boolean hasSuggestedQty = false;
+        ResultSetMetaData meta = rs.getMetaData();
+        for (int i = 1; i <= meta.getColumnCount(); i++) {
+            if ("suggested_qty".equalsIgnoreCase(meta.getColumnLabel(i))) {
+                hasSuggestedQty = true;
+                break;
+            }
+        }
+        if (hasSuggestedQty) {
+            Object suggestedQty = rs.getObject("suggested_qty");
+            p.setSuggestedQty(suggestedQty != null ? rs.getDouble("suggested_qty") : null);
+        } else {
+            p.setSuggestedQty(null);
+        }
         return p;
     }
 }

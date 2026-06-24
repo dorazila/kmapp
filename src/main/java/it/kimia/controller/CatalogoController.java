@@ -31,6 +31,14 @@ public class CatalogoController {
         return "catalogo";
     }
     @PostMapping("/add/{code}") public String add(@PathVariable String code, @RequestParam(required=false) String category, @RequestParam(required=false) String q, @RequestParam(required=false) String listinoType, @RequestParam(required=false) String system) throws Exception {
+        return addInternal(code, category, q, listinoType, system);
+    }
+
+    @GetMapping("/add/{code}") public String addFromGet(@PathVariable String code, @RequestParam(required=false) String category, @RequestParam(required=false) String q, @RequestParam(required=false) String listinoType, @RequestParam(required=false) String system) throws Exception {
+        return addInternal(code, category, q, listinoType, system);
+    }
+
+    private String addInternal(String code, String category, String q, String listinoType, String system) throws Exception {
         cart.add(code);
         return "redirect:" + ServletUriComponentsBuilder.fromPath("/catalogo")
             .queryParamIfPresent("category", java.util.Optional.ofNullable(category).filter(s -> !s.isBlank()))
