@@ -3,17 +3,17 @@
   <div class="card"><h1>Listino prodotti</h1>
     <form method="get" class="grid3">
       <div><label>Categoria</label><select name="category"><option th:each="c:${categories}" th:value="${c}" th:text="${c}" th:selected="${c==selectedCategory}"></option></select></div>
-      <div><label>Sistema</label><select name="system"><option th:each="s:${systems}" th:value="${s}" th:text="${s}" th:selected="${s==selectedSystem}"></option></select></div>
+      <div><label>Sistema</label><select name="system"><option value="" th:selected="${selectedSystem == null or selectedSystem == ''}">Tutti i sistemi</option><option th:each="s:${systems}" th:value="${s instanceof T(java.lang.String) ? s : s.code}" th:text="${s instanceof T(java.lang.String) ? s : s.name}" th:selected="${(s instanceof T(java.lang.String) ? s : s.code) == selectedSystem}"></option></select></div>
       <div><label>Tipo listino</label><select name="listinoType"><option value="" th:selected="${selectedListinoType == null or selectedListinoType == ''}">Tutti</option><option value="STA" th:selected="${selectedListinoType == 'STA'}">STA - Standard</option><option value="NOSC" th:selected="${selectedListinoType == 'NOSC'}">NOSC - Non a scorta</option><option value="NLIS" th:selected="${selectedListinoType == 'NLIS'}">NLIS - Non a listino</option></select></div>
       <div><label>Cerca</label><input name="q" th:value="${q}" placeholder="nome, codice o descrizione"></div>
       <div style="align-self:end"><button type="submit">Filtra</button> <a class="btn secondary" href="/catalogo">Pulisci</a></div>
     </form>
-    <p class="muted">Prodotti trovati: <span th:text="${#lists.size(products)}"></span> Â· Nel carrello: <span th:text="${cartCount}"></span></p>
+    <p class="muted">Prodotti trovati: <span th:text="${#lists.size(products)}"></span> &middot; Nel carrello: <span th:text="${cartCount}"></span></p>
   </div>
   <div class="card">
-    <table><thead><tr><th>Codice</th><th>Tipo</th><th>Prodotto</th><th>Categoria</th><th>UM</th><th class="right">Netto</th><th class="right">Listino</th><th></th></tr></thead>
+    <table><thead><tr><th>Codice</th><th>Tipo</th><th>Prodotto</th><th>Categoria</th><th>UM</th><th class="right">Qta suggerita</th><th class="right">Netto</th><th class="right">Listino</th><th></th></tr></thead>
       <tbody><tr th:each="p:${products}" th:classappend="${selectedCodes != null and selectedCodes.contains(p.productCode)} ? 'row-added' : ''">
-        <td th:text="${p.productCode}"></td><td><span class="listino-badge" th:classappend="${'listino-' + p.listinoType}" th:text="${p.listinoType}" th:title="${p.listinoType == 'STA' ? 'Standard' : (p.listinoType == 'NOSC' ? 'Non a scorta' : 'Non a listino')}"></span></td><td><strong th:text="${p.productName}"></strong><div class="muted" th:text="${p.description}"></div></td><td th:text="${p.categoryName}"></td><td th:text="${p.unitMeasure}"></td><td class="right" th:text="${#numbers.formatDecimal(p.netPrice,1,'POINT',2,'COMMA')}"></td><td class="right" th:text="${#numbers.formatDecimal(p.listinoPrice,1,'POINT',2,'COMMA')}"></td>
+        <td th:text="${p.productCode}"></td><td><span class="listino-badge" th:classappend="${'listino-' + p.listinoType}" th:text="${p.listinoType}" th:title="${p.listinoType == 'STA' ? 'Standard' : (p.listinoType == 'NOSC' ? 'Non a scorta' : 'Non a listino')}"></span></td><td><strong th:text="${p.productName}"></strong><div class="muted" th:text="${p.description}"></div></td><td th:text="${p.categoryName}"></td><td th:text="${p.unitMeasure}"></td><td class="right" th:text="${p.suggestedQty != null ? #numbers.formatDecimal(p.suggestedQty,1,'POINT',2,'COMMA') : '-'}"></td><td class="right" th:text="${#numbers.formatDecimal(p.netPrice,1,'POINT',2,'COMMA')}"></td><td class="right" th:text="${#numbers.formatDecimal(p.listinoPrice,1,'POINT',2,'COMMA')}"></td>
         <td><form th:action="@{/catalogo/add/{code}(code=${p.productCode})}" method="post"><input type="hidden" name="category" th:value="${selectedCategory}"><input type="hidden" name="system" th:value="${selectedSystem}"><input type="hidden" name="listinoType" th:value="${selectedListinoType}"><input type="hidden" name="q" th:value="${q}"><button type="submit">Aggiungi</button></form></td>
       </tr></tbody></table>
   </div>

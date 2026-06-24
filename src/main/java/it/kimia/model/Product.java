@@ -10,6 +10,7 @@ public class Product {
     private double discountRate;
     private double netPrice;
     private String listinoType; // "STA", "NOSC", "NLIS"
+    private Double suggestedQty;
 
     public Product() {}
 
@@ -35,6 +36,7 @@ public class Product {
     public double getDiscountRate()  { return discountRate; }
     public double getNetPrice()      { return netPrice; }
     public String getListinoType()   { return listinoType; }
+    public Double getSuggestedQty()  { return suggestedQty; }
 
     public void setProductCode(String v)  { this.productCode = v; }
     public void setProductName(String v)  { this.productName = v; }
@@ -45,4 +47,5 @@ public class Product {
     public void setDiscountRate(double v) { this.discountRate = v; }
     public void setNetPrice(double v)     { this.netPrice = v; }
     public void setListinoType(String v)  { this.listinoType = v; }
+    public void setSuggestedQty(Double v) { this.suggestedQty = v; }
 }
