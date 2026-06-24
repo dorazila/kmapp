@@ -1,4 +1,4 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Listino</title><link rel="stylesheet" href="/css/app.css"></head><body><div th:replace="~{_nav :: nav}"></div>
+﻿<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Listino</title><link rel="stylesheet" href="/css/app.css"></head><body><div th:replace="~{_nav :: nav}"></div>
 <main class="container">
   <div class="card"><h1>Listino prodotti</h1>
     <form method="get" class="grid3">
@@ -7,7 +7,7 @@
       <div><label>Cerca</label><input name="q" th:value="${q}" placeholder="nome, codice o descrizione"></div>
       <div style="align-self:end"><button type="submit">Filtra</button> <a class="btn secondary" href="/catalogo">Pulisci</a></div>
     </form>
-    <p class="muted">Prodotti trovati: <span th:text="${#lists.size(products)}"></span> · Nel carrello: <span th:text="${cartCount}"></span></p>
+    <p class="muted">Prodotti trovati: <span th:text="${#lists.size(products)}"></span> Â· Nel carrello: <span th:text="${cartCount}"></span></p>
   </div>
   <div class="card">
     <table><thead><tr><th>Codice</th><th>Tipo</th><th>Prodotto</th><th>Categoria</th><th>UM</th><th class="right">Netto</th><th class="right">Listino</th><th></th></tr></thead>
@@ -17,3 +17,4 @@
       </tr></tbody></table>
   </div>
 </main></body></html>
+

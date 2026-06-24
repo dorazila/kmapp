@@ -1,6 +1,7 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Anteprima offerta</title><link rel="stylesheet" href="/css/app.css"></head><body><div th:replace="~{_nav :: nav}"></div>
-<main class="container"><div class="card"><h1>Anteprima offerta</h1><p class="total">Totale carrello: € <span th:text="${#numbers.formatDecimal(cartTotal,1,'POINT',2,'COMMA')}"></span></p>
+﻿<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Anteprima offerta</title><link rel="stylesheet" href="/css/app.css"></head><body><div th:replace="~{_nav :: nav}"></div>
+<main class="container"><div class="card"><h1>Anteprima offerta</h1><p class="total">Totale carrello: â‚¬ <span th:text="${#numbers.formatDecimal(cartTotal,1,'POINT',2,'COMMA')}"></span></p>
 <form action="/offerta/save" method="post">
 <input type="hidden" name="numero" th:value="${form.numero}"><input type="hidden" name="dataOfferta" th:value="${form.dataOfferta}"><input type="hidden" name="cliente" th:value="${form.cliente}"><input type="hidden" name="cantiere" th:value="${form.cantiere}"><input type="hidden" name="regione" th:value="${form.regione}"><input type="hidden" name="scadenzaGg" th:value="${form.scadenzaGg}"><input type="hidden" name="agente" th:value="${form.agente}"><input type="hidden" name="email" th:value="${form.email}"><input type="hidden" name="tel" th:value="${form.tel}"><input type="hidden" name="note" th:value="${form.note}"><input type="hidden" name="trasporto" th:value="${form.trasporto}"><input type="hidden" name="shortMode" th:value="${form.shortMode}">
 <button type="submit">Salva offerta</button> <a class="btn secondary" href="/offerta">Modifica</a> <button type="submit" formaction="/offerta/pdf" formtarget="_blank" class="secondary">Stampa / PDF</button></form></div>
 <div class="card" th:utext="${html}"></div></main></body></html>
+

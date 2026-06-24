@@ -1,7 +1,7 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Offerta</title><link rel="stylesheet" href="/css/app.css"></head><body><div th:replace="~{_nav :: nav}"></div>
-<main class="container"><div class="card"><h1>Nuova offerta</h1><p class="total">Totale carrello: € <span th:text="${#numbers.formatDecimal(cartTotal,1,'POINT',2,'COMMA')}"></span></p></div>
+﻿<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Offerta</title><link rel="stylesheet" href="/css/app.css"></head><body><div th:replace="~{_nav :: nav}"></div>
+<main class="container"><div class="card"><h1>Nuova offerta</h1><p class="total">Totale carrello: â‚¬ <span th:text="${#numbers.formatDecimal(cartTotal,1,'POINT',2,'COMMA')}"></span></p></div>
 <form action="/offerta/preview" method="post" class="card">
-<div class="grid3"><div><label>Numero</label><input name="numero"></div><div><label>Data</label><input name="dataOfferta" th:value="${today}"></div><div><label>Validità giorni</label><input name="scadenzaGg" value="30"></div></div>
+<div class="grid3"><div><label>Numero</label><input name="numero"></div><div><label>Data</label><input name="dataOfferta" th:value="${today}"></div><div><label>ValiditÃ  giorni</label><input name="scadenzaGg" value="30"></div></div>
 <div class="grid"><div><label>Cliente</label><input name="cliente"></div><div><label>Cantiere</label><input name="cantiere"></div></div>
 <div class="grid3"><div><label>Regione</label><select name="regione"><option th:each="r:${regions}" th:value="${r}" th:text="${r}" th:selected="${r=='Umbria'}"></option></select></div><div><label>Agente</label><input name="agente"></div><div><label>Email</label><input name="email"></div></div>
 <div class="grid"><div><label>Telefono</label><input name="tel"></div><div><label>Formato prezzi</label><select name="shortMode"><option value="false">Completo: listino + sconto + netto</option><option value="true">Sintetico: solo netto</option></select></div></div>
@@ -37,3 +37,4 @@
 	})();
 </script>
 </body></html>
+
