@@ -9,11 +9,12 @@ import java.util.*;
 
 @Repository
 public class ProductRepository {
-    public List<Product> findAll(String category, String q, String listinoType) throws SQLException {
+    public List<Product> findAll(String category, String q, String listinoType, String system) throws SQLException {
         List<Product> out = new ArrayList<>();
         StringBuilder sql = new StringBuilder("SELECT product_code, product_name, description, unit_measure, category_name, listino_price, discount_rate, net_price, listino_type FROM products WHERE 1=1");
         List<Object> args = new ArrayList<>();
         if (category != null && !category.isBlank() && !"Tutti i prodotti".equals(category)) { sql.append(" AND category_name=?"); args.add(category); }
+        if (system != null && !system.isBlank() && !"Tutti i sistemi".equals(system)) { sql.append(" AND product_name=?"); args.add(system); }
         if (listinoType != null && !listinoType.isBlank() && !"Tutti".equals(listinoType)) { sql.append(" AND listino_type=?"); args.add(listinoType); }
         if (q != null && !q.isBlank()) { sql.append(" AND (lower(product_name) LIKE ? OR lower(product_code) LIKE ? OR lower(description) LIKE ?)"); String s="%"+q.toLowerCase()+"%"; args.add(s); args.add(s); args.add(s); }
         sql.append(" ORDER BY category_name, product_name, product_code");
@@ -37,6 +38,15 @@ public class ProductRepository {
         List<String> out = new ArrayList<>();
         out.add("Tutti i prodotti");
         try (PreparedStatement ps = Database.get().prepareStatement("SELECT category_name FROM product_categories ORDER BY sort_order"); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) out.add(rs.getString(1));
+        }
+        return out;
+    }
+
+    public List<String> systems() throws SQLException {
+        List<String> out = new ArrayList<>();
+        out.add("Tutti i sistemi");
+        try (PreparedStatement ps = Database.get().prepareStatement("SELECT DISTINCT product_name FROM products WHERE product_name IS NOT NULL AND trim(product_name) <> '' ORDER BY product_name"); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) out.add(rs.getString(1));
         }
         return out;
