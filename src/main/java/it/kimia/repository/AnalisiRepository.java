@@ -78,6 +78,15 @@ public class AnalisiRepository {
         }
     }
 
+    public void deleteSaved(int id, String ownerUser) throws SQLException {
+        String sql = "DELETE FROM analisi_prezzi_salvate WHERE id=? AND owner_user=?";
+        try (PreparedStatement ps = Database.get().prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.setString(2, ownerUser);
+            ps.executeUpdate();
+        }
+    }
+
     private AnalisiComponent mapComponent(ResultSet rs) throws SQLException {
         AnalisiComponent c = new AnalisiComponent(); c.setVoce_code(rs.getString("voce_code")); c.setComponent_order(rs.getInt("component_order")); c.setSheet_name(rs.getString("sheet_name")); c.setComponent_type(rs.getString("component_type")); c.setDescription(rs.getString("description")); c.setUnit_measure(rs.getString("unit_measure")); c.setQuantity(rs.getDouble("quantity")); c.setUnit_price(rs.getDouble("unit_price")); c.setTotal_price(rs.getDouble("total_price")); return c;
     }

@@ -17,7 +17,12 @@
           <td th:text="${a.cliente}"></td>
           <td th:text="${a.createdAt}"></td>
           <td class="right" th:text="${a.totale == null ? '-' : #numbers.formatDecimal(a.totale,1,'POINT',2,'COMMA')}"></td>
-          <td><a th:href="@{/ap/storico/{id}(id=${a.id})}" class="btn secondary" style="font-size:12px;padding:5px 10px">Apri</a></td>
+          <td style="display:flex;gap:6px;align-items:center">
+            <a th:href="@{/ap/storico/{id}(id=${a.id})}" class="btn secondary" style="font-size:12px;padding:5px 10px">Apri</a>
+            <form th:action="@{/ap/storico/delete/{id}(id=${a.id})}" method="post" onsubmit="return confirm('Eliminare questa analisi salvata?');">
+              <button class="danger" style="font-size:12px;padding:5px 10px" type="submit">Elimina</button>
+            </form>
+          </td>
         </tr>
       </tbody>
     </table>

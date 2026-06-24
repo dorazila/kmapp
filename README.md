@@ -21,7 +21,7 @@ Prima migrazione web della applicazione JavaFX Kimia verso Spring Boot + Thymele
 
 ## Avvio
 
-Serve Java 17+ e Maven.
+Serve Java 25+ e Maven.
 
 ```bash
 mvn spring-boot:run

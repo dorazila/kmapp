@@ -85,6 +85,12 @@ public class AnalisiController {
         return "analisi-storico";
     }
 
+    @PostMapping("/storico/delete/{id:\\d+}")
+    public String deleteSaved(@PathVariable int id, HttpSession session) throws Exception {
+        repo.deleteSaved(id, currentUser(session));
+        return "redirect:/ap/storico";
+    }
+
     private String currentUser(HttpSession session) {
         String username = auth.currentUsername(session);
         if (username == null) throw new IllegalStateException("Utente non autenticato");

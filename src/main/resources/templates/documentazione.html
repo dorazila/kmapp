@@ -1,0 +1,30 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Documentazione - Kimia WebApp</title><link rel="stylesheet" href="/css/app.css"></head><body><div th:replace="~{_nav :: nav}"></div>
+<main class="container">
+  <div class="card">
+    <h1>Documentazione</h1>
+    <p class="muted">Seleziona una soluzione nel menu a sinistra. A destra viene caricata la pagina Kimia corrispondente.</p>
+  </div>
+
+  <div class="sidebar-layout">
+    <aside class="card">
+      <h2>Soluzioni</h2>
+      <ul class="list sec-list">
+        <li>
+          <a th:href="@{/documentazione(sezione='compositi')}" th:classappend="${docSection == 'compositi'} ? ' active' : ''">Prodotti per il consolidamento strutturale con sistemi compositi</a>
+        </li>
+        <li>
+          <a th:href="@{/documentazione(sezione='moderna')}" th:classappend="${docSection == 'moderna'} ? ' active' : ''">Soluzioni tecniche per il recupero dell'edilizia moderna</a>
+        </li>
+        <li>
+          <a th:href="@{/documentazione(sezione='restauro')}" th:classappend="${docSection == 'restauro'} ? ' active' : ''">Prodotti per il restauro dell'edilizia storico monumentale</a>
+        </li>
+      </ul>
+      <p class="muted" style="margin-top:12px;">Se il sito esterno blocca l'anteprima, apri la pagina in una nuova scheda:</p>
+      <a class="btn secondary" th:href="${docUrl}" target="_blank" rel="noopener noreferrer">Apri su kimia.it</a>
+    </aside>
+
+    <section class="card">
+      <iframe class="preview-frame" th:src="${docUrl}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Documentazione Kimia"></iframe>
+    </section>
+  </div>
+</main></body></html>

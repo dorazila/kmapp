@@ -9,7 +9,7 @@ public class Product {
     private double listinoPrice;
     private double discountRate;
     private double netPrice;
-    private String listinoType; // "STA", "FST", "NLIS"
+    private String listinoType; // "STA", "NOSC", "NLIS"
 
     public Product() {}
 

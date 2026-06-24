@@ -285,9 +285,9 @@ public final class Database {
                 String key = csvMetaKey(fields.get(0), fields.get(1));
                 String[] voceParts = splitVoceCode(fields.get(1));
                 writeCsvRow(writer,
-                    fields.get(0), voceParts[0], voceParts[1], introDescriptions.getOrDefault(key, ""),
-                    fields.get(2), fields.get(3), fields.get(4), fields.get(5),
-                    fields.get(6), fields.get(7), fields.get(8));
+                    normalize(fields.get(0)), voceParts[0], voceParts[1], normalize(introDescriptions.getOrDefault(key, "")),
+                    normalize(fields.get(2)), normalize(fields.get(3)), normalize(fields.get(4)), normalize(fields.get(5)),
+                    normalize(fields.get(6)), normalize(fields.get(7)), normalize(fields.get(8)));
             }
         }
     }
@@ -329,9 +329,9 @@ public final class Database {
                         if (productCode == null || categoryName == null) continue;
                         int categoryOrder = categoryOrders.computeIfAbsent(categoryName, ignored -> nextCategoryOrder[0]++);
                         writeCsvRow(writer,
-                            fields.get(0), fields.get(1), fields.get(2), fields.get(3), fields.get(4), fields.get(5),
-                            categoryOrder, fields.get(6), fields.get(7), fields.get(8),
-                            listinoTypes.getOrDefault(productCode, "NLIS"), fields.get(9));
+                            normalize(fields.get(0)), normalize(fields.get(1)), normalize(fields.get(2)), normalize(fields.get(3)), normalize(fields.get(4)), normalize(fields.get(5)),
+                            categoryOrder, normalize(fields.get(6)), normalize(fields.get(7)), normalize(fields.get(8)),
+                            listinoTypes.getOrDefault(productCode, "NLIS"), normalize(fields.get(9)));
                     }
                 }
                 return;
@@ -682,7 +682,37 @@ public final class Database {
     private static String normalize(String value) {
         if (value == null) return null;
         String trimmed = value.trim();
-        return trimmed.isEmpty() ? null : trimmed;
+        if (trimmed.isEmpty()) return null;
+        return sanitizeReplacementChars(repairMojibake(trimmed));
+    }
+
+    private static String repairMojibake(String value) {
+        if (!looksLikeMojibake(value)) return value;
+        String repaired = new String(value.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        return mojibakeScore(repaired) < mojibakeScore(value) ? repaired : value;
+    }
+
+    private static boolean looksLikeMojibake(String value) {
+        return value.indexOf('Ã') >= 0 || value.indexOf('Â') >= 0 || value.contains("â€") || value.contains("Ã¸") || value.contains("Ã±");
+    }
+
+    private static int mojibakeScore(String value) {
+        int score = 0;
+        for (int i = 0; i < value.length(); i++) {
+            char ch = value.charAt(i);
+            if (ch == 'Ã' || ch == 'Â') score += 2;
+            if (ch == 'â') score += 1;
+        }
+        return score;
+    }
+
+    private static String sanitizeReplacementChars(String value) {
+        if (value.indexOf('\uFFFD') < 0) return value;
+        String fixed = value;
+        fixed = fixed.replace(" �?? ", " – ");
+        fixed = fixed.replace("�?", "–");
+        fixed = fixed.replace("�", "–");
+        return fixed;
     }
 
     private static String csvMetaKey(String sheetName, String voceCode) {
@@ -713,7 +743,8 @@ public final class Database {
         String normalized = normalize(value);
         if (normalized == null) return "NLIS";
         normalized = normalized.toUpperCase();
-        return ("STA".equals(normalized) || "FST".equals(normalized) || "NLIS".equals(normalized)) ? normalized : "NLIS";
+        if ("FST".equals(normalized)) return "NOSC";
+        return ("STA".equals(normalized) || "NOSC".equals(normalized) || "NLIS".equals(normalized)) ? normalized : "NLIS";
     }
 
     private static int parseIntOrZero(String raw) {

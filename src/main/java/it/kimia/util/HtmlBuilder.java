@@ -2,6 +2,8 @@ package it.kimia.util;
 
 import it.kimia.model.CartItem;
 
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.List;
 
 import static it.kimia.util.Formatter.*;
@@ -10,6 +12,8 @@ import static it.kimia.util.Formatter.*;
  * Generates the offer HTML preview (equivalent to renderOffertaPreviewHtml in JS).
  */
 public final class HtmlBuilder {
+
+  private static final String LOGO_DATA_URI = loadLogoDataUri();
 
     private HtmlBuilder() {}
 
@@ -144,10 +148,14 @@ public final class HtmlBuilder {
     }
 
     private static String buildHeader(String agente, String tel, String email) {
+        String logoOrText = LOGO_DATA_URI.isBlank()
+            ? "<span style=\"font-family:'Arial Black','Segoe UI',Arial,sans-serif;font-size:25.6px;line-height:1;font-weight:800;letter-spacing:.01em;color:#1A3A6B;\">KIMIA</span>"
+            : "<img src=\"" + LOGO_DATA_URI + "\" alt=\"Kimia\" style=\"width:72px;height:auto;display:block;\" />";
+
         return """
             <div style="padding:14px 20px 12px;border-bottom:1px solid #dbe2ea;display:flex;align-items:flex-start;justify-content:space-between;">
               <div style="flex:0 0 auto;">
-                <span style="font-family:'Arial Black','Segoe UI',Arial,sans-serif;font-size:25.6px;line-height:1;font-weight:800;letter-spacing:.01em;color:#1A3A6B;">KIMIA</span>
+            """ + logoOrText + """
               </div>
               <div style="flex:1;text-align:right;font-size:11px;color:#444;line-height:1.7;">
                 <div style="font-size:16px;font-weight:800;color:#111;margin-bottom:4px;">Kimia S.p.A.</div>
@@ -164,6 +172,15 @@ public final class HtmlBuilder {
               </div>
             </div>""";
     }
+
+          private static String loadLogoDataUri() {
+            try (InputStream in = HtmlBuilder.class.getResourceAsStream("/static/img/logo.jpg")) {
+              if (in == null) return "";
+              return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(in.readAllBytes());
+            } catch (Exception ex) {
+              return "";
+            }
+          }
 
     private static String buildFooter(String agente, String tel, String email) {
         return """
